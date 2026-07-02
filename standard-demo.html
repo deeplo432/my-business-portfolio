@@ -724,6 +724,66 @@
   </script>
 </section>
 
+<section id="conciergebot" style="padding:5rem 6%; background:var(--ice);">
+  <div style="max-width:680px; margin:0 auto;">
+    <div style="text-align:center; font-size:0.8rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:0.6rem;">Try It</div>
+    <h2 style="text-align:center; font-size:2rem; font-weight:800; margin-bottom:0.8rem;">Meet the Concierge Bot</h2>
+    <p style="text-align:center; color:var(--slate); margin-bottom:2rem;">One tier up from a FAQ bot — it asks a couple of questions, gives a real recommendation, and offers to capture your info. This is the Standard-tier chatbot.</p>
+    <div style="background:var(--deep); border-radius:12px; overflow:hidden;">
+      <div style="padding:1rem 1.5rem; border-bottom:1px solid rgba(255,255,255,0.1); color:var(--white); font-weight:700; letter-spacing:0.03em;">Peak Comfort Concierge</div>
+      <div id="conciergeBody" style="padding:1.5rem; min-height:140px; display:flex; flex-direction:column; gap:1rem;">
+        <div style="color:var(--white); font-size:0.95rem;">Hi! What's going on with your system today?</div>
+        <div id="conciergeOptions" style="display:flex; flex-wrap:wrap; gap:0.6rem;">
+          <button class="cbtn" onclick="conciergeStep('cooling')">AC not cooling</button>
+          <button class="cbtn" onclick="conciergeStep('heating')">Heating issue</button>
+          <button class="cbtn" onclick="conciergeStep('noise')">Strange noise</button>
+          <button class="cbtn" onclick="conciergeStep('quote')">Just want a quote</button>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:0.75rem; color:var(--slate); margin-top:1rem; text-transform:uppercase; letter-spacing:0.05em;">Scripted demo — guided flow, not full AI</p>
+  </div>
+  <style>
+    .cbtn{ font-size:0.85rem; padding:0.6rem 1rem; background:rgba(255,255,255,0.1); color:var(--white); border:1px solid rgba(255,255,255,0.25); border-radius:8px; cursor:pointer; font-family:inherit; }
+    .cbtn:hover{ background:rgba(255,255,255,0.2); }
+  </style>
+  <script>
+    const CONCIERGE_FLOW = {
+      cooling: { msg: "Sounds like it could be a refrigerant issue, a failing capacitor, or a dirty condenser coil — all common with warm-weather AC calls. A tech can diagnose it on-site, usually same-day.", cta: "Book an AC Repair visit" },
+      heating: { msg: "Heating issues are often the ignitor, thermostat wiring, or a clogged filter. We'll send a tech who can usually fix it in one visit.", cta: "Book a Heating Repair visit" },
+      noise: { msg: "Grinding or squealing usually means a motor bearing or belt issue — worth having looked at before it becomes a bigger repair.", cta: "Book a Diagnostic visit" },
+      quote: { msg: "Happy to get you a quote — pricing depends on your system size and the scope of work.", cta: "Request a Quote" }
+    };
+    function conciergeStep(kind){
+      const body = document.getElementById('conciergeBody');
+      const flow = CONCIERGE_FLOW[kind];
+      document.getElementById('conciergeOptions').remove();
+      const reply = document.createElement('div');
+      reply.style.cssText = 'color:var(--white); font-size:0.95rem;';
+      reply.textContent = flow.msg;
+      body.appendChild(reply);
+
+      const nameRow = document.createElement('div');
+      nameRow.style.cssText = 'display:flex; gap:0.5rem; margin-top:0.4rem; flex-wrap:wrap;';
+      nameRow.innerHTML = `
+        <input id="conciergeName" placeholder="Your name" style="flex:1; min-width:120px; padding:0.7rem 0.9rem; border-radius:8px; border:1px solid rgba(255,255,255,0.25); background:rgba(255,255,255,0.08); color:var(--white); font-family:inherit;">
+        <input id="conciergePhone" placeholder="Phone number" style="flex:1; min-width:120px; padding:0.7rem 0.9rem; border-radius:8px; border:1px solid rgba(255,255,255,0.25); background:rgba(255,255,255,0.08); color:var(--white); font-family:inherit;">
+      `;
+      body.appendChild(nameRow);
+
+      const btn = document.createElement('button');
+      btn.textContent = flow.cta;
+      btn.style.cssText = 'margin-top:0.4rem; padding:0.8rem; background:var(--accent); color:var(--white); border:none; border-radius:8px; font-weight:700; cursor:pointer; font-family:inherit;';
+      btn.onclick = () => {
+        const name = document.getElementById('conciergeName').value.trim() || 'there';
+        body.innerHTML = `<div style="color:var(--white); font-size:0.95rem;">Thanks, ${name} — in a real deployment this would text our dispatch team and confirm a visit window with you. (Demo only, nothing was actually sent.)</div>`;
+      };
+      body.appendChild(btn);
+      body.scrollTop = body.scrollHeight;
+    }
+  </script>
+</section>
+
 <footer>
   <div class="footer-top">
     <div>

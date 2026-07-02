@@ -562,7 +562,69 @@
   </script>
 </section>
 
-<footer>
+<section id="faqbot" style="padding:5rem 6%; background:var(--cream);">
+  <div style="max-width:640px; margin:0 auto;">
+    <div class="section-tag" style="text-align:center;">Try It</div>
+    <h2 class="section-title" style="text-align:center;">Ask Our FAQ Bot</h2>
+    <p class="contact-sub" style="text-align:center; margin-bottom:2rem;">A lightweight bot that answers common questions instantly — no phone call needed. This is the Starter-tier chatbot: quick answers, not a full conversation.</p>
+    <div style="background:var(--navy); border-radius:4px; overflow:hidden;">
+      <div style="padding:1rem 1.25rem; border-bottom:1px solid rgba(255,255,255,0.1); color:var(--cream); font-weight:700; letter-spacing:0.04em; text-transform:uppercase; font-size:0.8rem;">Ridge Line FAQ Bot</div>
+      <div id="faqBody" style="padding:1.25rem; min-height:120px; max-height:280px; overflow-y:auto; display:flex; flex-direction:column; gap:0.9rem;">
+        <div style="color:var(--cream); font-size:0.9rem;">Ask me about hours, pricing, service area, or emergencies.</div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; padding:0 1.25rem 1rem;">
+        <button class="faq-chip" onclick="faqAsk('What are your hours?')">Hours?</button>
+        <button class="faq-chip" onclick="faqAsk('How much does a leak repair cost?')">Pricing?</button>
+        <button class="faq-chip" onclick="faqAsk('Do you offer emergency service?')">Emergencies?</button>
+        <button class="faq-chip" onclick="faqAsk('What areas do you service?')">Service area?</button>
+      </div>
+      <div style="display:flex; border-top:1px solid rgba(255,255,255,0.1);">
+        <input type="text" id="faqInput" placeholder="Type a question…" style="flex:1; background:transparent; border:none; padding:0.9rem 1.25rem; color:var(--cream); font-family:inherit;">
+        <button onclick="faqSend()" style="padding:0 1.5rem; background:var(--orange); color:var(--navy); border:none; font-weight:700; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.04em;">Ask</button>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:0.75rem; color:var(--warm-gray); margin-top:1rem; text-transform:uppercase; letter-spacing:0.05em;">Scripted demo — answers a fixed set of common questions, not full AI</p>
+  </div>
+  <style>.faq-chip{font-size:0.75rem; padding:0.4rem 0.8rem; background:rgba(255,255,255,0.08); color:var(--cream); border:1px solid rgba(255,255,255,0.2); border-radius:20px; cursor:pointer;} .faq-chip:hover{background:rgba(255,255,255,0.16);}</style>
+  <script>
+    const FAQ_ANSWERS = [
+      { keys: ['hour','open','close','time'], a: "We're open Mon–Fri 7am–6pm and Sat 8am–2pm. Emergency calls are answered 24/7." },
+      { keys: ['price','cost','much','fee','charge'], a: "Most repairs run $150–$450 depending on the job. We give a firm quote before starting any work — nothing is a surprise." },
+      { keys: ['emergency','urgent','burst','flood'], a: "Yes — we offer 24/7 emergency service for burst pipes, major leaks, and no-water situations. Call (205) 555-0100 any time." },
+      { keys: ['area', 'service area', 'location', 'where', 'oneonta', 'blount'], a: "We serve Oneonta and all of Blount County, plus nearby parts of Jefferson County." },
+      { keys: ['license', 'insured', 'insurance', 'bonded'], a: "Yes, we're fully licensed and insured in the state of Alabama." },
+      { keys: ['warranty', 'guarantee'], a: "All repairs come with a 1-year workmanship warranty." },
+    ];
+    function faqAsk(question){
+      document.getElementById('faqInput').value = question;
+      faqSend();
+    }
+    function faqSend(){
+      const input = document.getElementById('faqInput');
+      const q = input.value.trim();
+      if(!q) return;
+      const body = document.getElementById('faqBody');
+      const qDiv = document.createElement('div');
+      qDiv.style.cssText = 'align-self:flex-end; color:var(--orange); font-size:0.9rem; font-weight:600; text-align:right;';
+      qDiv.textContent = q;
+      body.appendChild(qDiv);
+
+      const lower = q.toLowerCase();
+      let answer = "I don't have an answer for that one — please call (205) 555-0100 and we'll help directly.";
+      for(const entry of FAQ_ANSWERS){
+        if(entry.keys.some(k => lower.includes(k))){ answer = entry.a; break; }
+      }
+      const aDiv = document.createElement('div');
+      aDiv.style.cssText = 'color:var(--cream); font-size:0.9rem;';
+      aDiv.textContent = answer;
+      body.appendChild(aDiv);
+
+      input.value = '';
+      body.scrollTop = body.scrollHeight;
+    }
+    document.getElementById('faqInput').addEventListener('keydown', e => { if(e.key === 'Enter') faqSend(); });
+  </script>
+</section>
   <strong>Ridge Line Plumbing</strong> · Oneonta, AL · License #AL-PLB-00412 · © 2025 All Rights Reserved
 </footer>
 
