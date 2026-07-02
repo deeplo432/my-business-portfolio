@@ -733,12 +733,13 @@
   <div class="section-kicker">Seasonal Menu</div>
   <h2 class="display-h2" style="color:var(--white)">What We're<br>Cooking <em>Right Now</em></h2>
   <div class="menu-tabs">
-    <div class="menu-tab active">Dinner</div>
-    <div class="menu-tab">Starters</div>
-    <div class="menu-tab">Brunch</div>
-    <div class="menu-tab">Cocktails</div>
+    <div class="menu-tab active" data-menu="dinner">Dinner</div>
+    <div class="menu-tab" data-menu="starters">Starters</div>
+    <div class="menu-tab" data-menu="brunch">Brunch</div>
+    <div class="menu-tab" data-menu="cocktails">Cocktails</div>
   </div>
-  <div class="menu-grid">
+
+  <div class="menu-grid menu-panel active" data-panel="dinner">
     <div class="menu-item">
       <div class="menu-item-info">
         <div class="menu-item-name">Braised Short Rib</div>
@@ -780,6 +781,141 @@
         <div class="menu-item-desc">Stone-ground Anson Mills grits, tasso ham, pickled peppers, parsley oil</div>
       </div>
       <div class="menu-item-price">$28</div>
+    </div>
+  </div>
+
+  <div class="menu-grid menu-panel" data-panel="starters" style="display:none;">
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Cast Iron Cornbread</div>
+        <div class="menu-item-desc">Whipped honey butter, sea salt</div>
+      </div>
+      <div class="menu-item-price">$9</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Fried Green Tomatoes</div>
+        <div class="menu-item-desc">Pimento cheese, comeback sauce, pickled shallot</div>
+      </div>
+      <div class="menu-item-price">$13</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Charred Okra</div>
+        <div class="menu-item-desc">Benne seed, chili oil, lemon</div>
+      </div>
+      <div class="menu-item-price">$11</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Pimento Deviled Eggs</div>
+        <div class="menu-item-desc">Country ham crumble, pickled mustard seed</div>
+      </div>
+      <div class="menu-item-price">$10</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Farmhouse Salad</div>
+        <div class="menu-item-desc">Seasonal greens, shaved vegetables, buttermilk herb dressing</div>
+      </div>
+      <div class="menu-item-price">$12</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">She-Crab Soup</div>
+        <div class="menu-item-desc">Gulf blue crab, sherry, cream, chive</div>
+      </div>
+      <div class="menu-item-price">$14</div>
+    </div>
+  </div>
+
+  <div class="menu-grid menu-panel" data-panel="brunch" style="display:none;">
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Chicken & Biscuits</div>
+        <div class="menu-item-desc">Buttermilk fried chicken, sawmill gravy, house biscuit</div>
+      </div>
+      <div class="menu-item-price">$18</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Copper Table Benedict</div>
+        <div class="menu-item-desc">Country ham, poached eggs, tomato hollandaise, sourdough</div>
+      </div>
+      <div class="menu-item-price">$16</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Buttermilk Pancakes</div>
+        <div class="menu-item-desc">Peach compote, sorghum butter, candied pecans</div>
+      </div>
+      <div class="menu-item-price">$14</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Shrimp & Grits Brunch</div>
+        <div class="menu-item-desc">Fried egg, tasso gravy, scallion</div>
+      </div>
+      <div class="menu-item-price">$19</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Farm Egg Skillet</div>
+        <div class="menu-item-desc">Roasted potatoes, seasonal vegetables, herb oil, sourdough toast</div>
+      </div>
+      <div class="menu-item-price">$15</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Brunch Grain Bowl</div>
+        <div class="menu-item-desc">Farro, roasted squash, greens, soft egg, lemon vinaigrette</div>
+      </div>
+      <div class="menu-item-price">$14</div>
+    </div>
+  </div>
+
+  <div class="menu-grid menu-panel" data-panel="cocktails" style="display:none;">
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Copper Old Fashioned</div>
+        <div class="menu-item-desc">Bourbon, sorghum, orange bitters, smoked cherry</div>
+      </div>
+      <div class="menu-item-price">$14</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Peach Smash</div>
+        <div class="menu-item-desc">Bourbon, muddled peach, mint, lemon</div>
+      </div>
+      <div class="menu-item-price">$13</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Blount County Mule</div>
+        <div class="menu-item-desc">Local vodka, ginger beer, lime, candied ginger</div>
+      </div>
+      <div class="menu-item-price">$12</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Farm Stand Margarita</div>
+        <div class="menu-item-desc">Tequila, seasonal fruit shrub, lime, tajín rim</div>
+      </div>
+      <div class="menu-item-price">$13</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Southern 75</div>
+        <div class="menu-item-desc">Gin, lemon, sorghum, sparkling wine</div>
+      </div>
+      <div class="menu-item-price">$14</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Rosemary Paloma</div>
+        <div class="menu-item-desc">Tequila, grapefruit, rosemary syrup, soda</div>
+      </div>
+      <div class="menu-item-price">$12</div>
     </div>
   </div>
 </section>
@@ -1004,6 +1140,19 @@
   const mobileMenu = document.getElementById('mobileMenu');
   navToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  const menuTabs = document.querySelectorAll('.menu-tab');
+  const menuPanels = document.querySelectorAll('.menu-panel');
+  menuTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-menu');
+      menuTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      menuPanels.forEach(panel => {
+        panel.style.display = panel.getAttribute('data-panel') === target ? 'grid' : 'none';
+      });
+    });
+  });
 </script>
 
 </body>
