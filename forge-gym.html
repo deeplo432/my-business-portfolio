@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORGE — Strength, built.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0d0d0d;
+    --panel:#141412;
+    --panel2:#1a1a17;
+    --white:#f3f1ec;
+    --gray:#8a8a83;
+    --line:rgba(243,241,236,0.12);
+    --accent:#ff4e1f;
+    --accent-dim:rgba(255,78,31,0.15);
+    --green:#7fbf6b;
+    --display: 'Anton', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--black);color:var(--white);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}*{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}}
+  a{color:inherit;text-decoration:none;}
+  button{font:inherit;cursor:pointer;}
+  ::selection{background:var(--accent);color:var(--black);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:rgba(13,13,13,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .logo{font-family:var(--display);font-size:22px;letter-spacing:1px;}
+  .logo span{color:var(--accent);}
+  .navlinks{display:flex;gap:18px;font-family:var(--mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;}
+  .navlinks a{color:var(--gray);transition:color 0.2s;}
+  .navlinks a:hover{color:var(--white);}
+  .nav-right{display:flex;align-items:center;gap:14px;}
+  .nav-cta{font-family:var(--mono);font-size:11px;letter-spacing:0.05em;text-transform:uppercase;border:1px solid var(--accent);background:var(--accent);color:var(--black);padding:9px 16px;transition:opacity 0.2s;}
+  .nav-cta:hover{opacity:0.85;}
+  .navtoggle{display:none;background:none;border:none;color:var(--white);font-size:22px;cursor:pointer;}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--black);border-bottom:1px solid var(--line);z-index:199;flex-direction:column;padding:10px 32px 20px;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:12px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray);}
+
+  /* HERO */
+  .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:100px;border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+  .hero-eyebrow{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:10px;}
+  .hero-eyebrow::before{content:'';width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+  .hero h1{font-family:var(--display);font-size:clamp(44px,9vw,120px);line-height:0.92;letter-spacing:-0.01em;text-transform:uppercase;max-width:1000px;}
+  .hero h1 .out{-webkit-text-stroke:1.5px var(--white);color:transparent;}
+  .hero-sub{max-width:480px;margin-top:28px;color:var(--gray);font-size:17px;}
+  .hero-actions{display:flex;gap:16px;margin-top:44px;flex-wrap:wrap;}
+  .btn-primary{font-family:var(--mono);font-size:13px;letter-spacing:0.05em;text-transform:uppercase;background:var(--accent);color:var(--black);padding:16px 28px;font-weight:500;transition:opacity 0.2s;border:none;}
+  .btn-primary:hover{opacity:0.85;}
+  .btn-ghost{font-family:var(--mono);font-size:13px;letter-spacing:0.05em;text-transform:uppercase;border:1px solid var(--line);color:var(--white);padding:16px 28px;transition:border-color 0.2s;background:none;}
+  .btn-ghost:hover{border-color:var(--white);}
+  /* SECTION */
+  .section{padding:100px 0;border-bottom:1px solid var(--line);}
+  .label-row{display:flex;align-items:baseline;gap:16px;margin-bottom:20px;}
+  .label-num{font-family:var(--mono);color:var(--accent);font-size:13px;}
+  .label-title{font-family:var(--display);font-size:clamp(28px,4vw,46px);text-transform:uppercase;letter-spacing:-0.01em;}
+  .label-line{flex:1;height:1px;background:var(--line);}
+  .section-sub{color:var(--gray);font-size:15px;max-width:520px;margin-bottom:44px;}
+
+  /* PHILOSOPHY */
+  .philosophy-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  .philosophy-lead{font-family:var(--display);font-size:clamp(24px,3vw,36px);text-transform:uppercase;line-height:1.15;}
+  .philosophy-lead .accent{color:var(--accent);}
+  .philosophy-body{color:var(--gray);font-size:16px;max-width:440px;}
+  .philosophy-body p{margin-bottom:18px;}
+
+  /* PROGRAMS */
+  .programs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);}
+  .program-card{background:var(--black);padding:32px 26px;transition:background 0.25s;}
+  .program-card:hover{background:var(--panel);}
+  .program-time{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:0.05em;margin-bottom:20px;}
+  .program-title{font-family:var(--display);font-size:22px;text-transform:uppercase;margin-bottom:12px;}
+  .program-desc{color:var(--gray);font-size:14px;line-height:1.6;}
+
+  /* GALLERY */
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);}
+  .gallery-tile{position:relative;aspect-ratio:1;overflow:hidden;background:var(--panel);}
+  .gallery-tile img{width:100%;height:100%;object-fit:cover;filter:grayscale(15%) contrast(1.05);transition:transform 0.4s, filter 0.4s;}
+  .gallery-tile:hover img{transform:scale(1.06);filter:grayscale(0%) contrast(1.05);}
+  .gallery-caption{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(transparent, rgba(13,13,13,0.9));font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--white);}
+
+  /* CHIPS */
+  .chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+  .chip{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;padding:8px 16px;border:1px solid var(--line);color:var(--gray);background:none;transition:all 0.2s;}
+  .chip:hover{border-color:var(--gray);color:var(--white);}
+  .chip.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);}
+
+  /* CLASSES */
+  .class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--line);}
+  .class-card{background:var(--black);padding:24px;display:flex;flex-direction:column;gap:10px;}
+  .class-top{display:flex;justify-content:space-between;align-items:baseline;}
+  .class-day{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.05em;}
+  .class-time{font-family:var(--mono);font-size:11px;color:var(--gray);}
+  .class-type{font-family:var(--display);font-size:20px;text-transform:uppercase;}
+  .class-meta{font-family:var(--mono);font-size:11px;color:var(--gray);}
+  .capacity-bar{height:3px;background:var(--line);width:100%;margin-top:4px;}
+  .capacity-fill{height:100%;background:var(--accent);}
+  .class-btn{margin-top:6px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;border:1px solid var(--white);color:var(--white);padding:10px;text-align:center;background:none;transition:all 0.2s;}
+  .class-btn:hover{background:var(--white);color:var(--black);}
+  .class-btn.full{border-color:var(--gray);color:var(--gray);}
+  .class-btn.booked{border-color:var(--green);color:var(--green);}
+
+  /* TRAINERS */
+  .trainer-quiz{background:var(--panel);border:1px solid var(--line);padding:24px 28px;margin-bottom:36px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .trainer-quiz label{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--gray);letter-spacing:0.05em;}
+  .trainer-quiz select{background:var(--black);color:var(--white);border:1px solid var(--line);padding:10px 14px;font-family:var(--mono);font-size:13px;}
+  .trainers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:var(--line);}
+  .trainer-card{background:var(--black);padding:26px;transition:all 0.25s;border:1px solid transparent;}
+  .trainer-card.match{border-color:var(--accent);background:var(--panel);}
+  .trainer-avatar{width:48px;height:48px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:16px;margin-bottom:16px;}
+  .trainer-card.match .trainer-avatar{border-color:var(--accent);color:var(--accent);}
+  .trainer-name{font-family:var(--display);font-size:19px;text-transform:uppercase;margin-bottom:6px;}
+  .trainer-spec{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:12px;}
+  .trainer-bio{color:var(--gray);font-size:13px;margin-bottom:14px;}
+  .trainer-days{font-family:var(--mono);font-size:11px;color:var(--gray);margin-bottom:14px;}
+  .match-tag{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--accent);border:1px solid var(--accent);padding:4px 8px;margin-bottom:12px;text-transform:uppercase;}
+
+  /* CALCULATORS */
+  .calc-tabs{display:flex;gap:1px;background:var(--line);margin-bottom:0;flex-wrap:wrap;}
+  .calc-tab{flex:1;min-width:120px;background:var(--black);border:none;color:var(--gray);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;padding:16px;transition:all 0.2s;}
+  .calc-tab.active{background:var(--panel);color:var(--accent);}
+  .calc-panel{display:none;background:var(--panel);padding:36px;border:1px solid var(--line);border-top:none;}
+  .calc-panel.active{display:block;}
+  .calc-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;margin-bottom:24px;}
+  .field label{display:block;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray);margin-bottom:8px;}
+  .field input, .field select{width:100%;background:var(--black);border:1px solid var(--line);color:var(--white);padding:12px 14px;font-family:var(--mono);font-size:14px;}
+  .field input:focus, .field select:focus{border-color:var(--accent);outline:none;}
+  .calc-btn{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:0.05em;background:var(--accent);color:var(--black);border:none;padding:14px 26px;}
+  .calc-result{margin-top:24px;padding:22px;border:1px solid var(--line);background:var(--black);font-family:var(--mono);font-size:14px;display:none;}
+  .calc-result.show{display:block;}
+  .calc-result .big{font-family:var(--display);font-size:34px;color:var(--accent);margin-bottom:6px;}
+  .calc-result .note{color:var(--gray);font-size:12px;margin-top:10px;}
+
+  /* SCHEDULE (weekly overview table, kept) */
+  .schedule-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:14px;}
+  .schedule-table th{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);color:var(--gray);font-weight:500;text-transform:uppercase;letter-spacing:0.05em;font-size:11px;}
+  .schedule-table td{padding:16px 12px;border-bottom:1px solid var(--line);color:var(--white);}
+  .schedule-table tr td:first-child{color:var(--accent);}
+  .schedule-table tbody tr:hover{background:var(--panel);}
+
+  /* MEMBERSHIP */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:50px;}
+  .plan{border:1px solid var(--line);padding:32px 28px;display:flex;flex-direction:column;transition:border-color 0.2s;}
+  .plan:hover{border-color:var(--gray);}
+  .plan.featured{border-color:var(--accent);position:relative;}
+  .plan-name{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray);margin-bottom:16px;}
+  .plan.featured .plan-name{color:var(--accent);}
+  .plan-price{font-family:var(--display);font-size:40px;margin-bottom:4px;}
+  .plan-price span{font-family:var(--mono);font-size:13px;color:var(--gray);}
+  .plan-desc{color:var(--gray);font-size:13px;margin-bottom:24px;}
+  .plan-list{list-style:none;font-size:13px;color:var(--white);margin-bottom:26px;flex:1;}
+  .plan-list li{padding:8px 0;border-top:1px solid var(--line);}
+  .plan-btn{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;text-align:center;padding:13px;border:1px solid var(--white);transition:all 0.2s;background:none;color:var(--white);width:100%;}
+  .plan-btn:hover{background:var(--white);color:var(--black);}
+  .plan.featured .plan-btn{background:var(--accent);border-color:var(--accent);color:var(--black);}
+  .cost-calc{background:var(--panel);border:1px solid var(--line);padding:30px;}
+  .cost-calc-title{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray);margin-bottom:20px;}
+  .cost-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:13px;}
+  .cost-row select, .cost-row input[type=number]{background:var(--black);border:1px solid var(--line);color:var(--white);padding:8px 12px;font-family:var(--mono);font-size:13px;width:120px;}
+  .cost-total{display:flex;justify-content:space-between;padding-top:18px;font-family:var(--mono);font-size:16px;}
+  .cost-total .amount{font-family:var(--display);font-size:28px;color:var(--accent);}
+
+  /* INFO GRID */
+  .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+  .info-card{background:var(--black);padding:30px;}
+  .info-card h3{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:var(--accent);margin-bottom:16px;}
+  .info-card p, .info-card li{color:var(--gray);font-size:13px;line-height:1.8;}
+  .info-card ul{list-style:none;}
+  .info-row{display:flex;justify-content:space-between;color:var(--gray);font-size:13px;padding:4px 0;font-family:var(--mono);}
+  .info-row span:last-child{color:var(--white);}
+
+  /* LEAD FORM */
+  .lead-box{background:var(--panel);border:1px solid var(--accent);padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;}
+  .lead-copy .label-title{margin-bottom:16px;}
+  .lead-copy p{color:var(--gray);font-size:14px;max-width:360px;}
+  .lead-form{display:flex;flex-direction:column;gap:14px;}
+  .lead-form input, .lead-form select{background:var(--black);border:1px solid var(--line);color:var(--white);padding:14px 16px;font-family:var(--mono);font-size:13px;}
+  .lead-form input:focus, .lead-form select:focus{border-color:var(--accent);outline:none;}
+  .lead-confirm{display:none;text-align:center;padding:30px;font-family:var(--mono);}
+  .lead-confirm.show{display:block;}
+  .lead-confirm .big{font-family:var(--display);font-size:28px;color:var(--accent);margin-bottom:10px;text-transform:uppercase;}
+  .demo-tag{font-family:var(--mono);font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:0.05em;margin-top:14px;}
+
+  /* FAQ */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%;text-align:left;background:none;border:none;color:var(--white);padding:22px 0;display:flex;justify-content:space-between;align-items:center;font-family:var(--body);font-size:16px;font-weight:500;}
+  .faq-q .plus{font-family:var(--mono);color:var(--accent);font-size:20px;transition:transform 0.2s;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height 0.25s ease;}
+  .faq-item.open .faq-a{max-height:200px;}
+  .faq-a p{color:var(--gray);font-size:14px;padding-bottom:22px;max-width:600px;}
+
+  /* COACH */
+  .coach-section{padding:100px 0;}
+  .console{background:var(--panel);border:1px solid var(--line);max-width:720px;margin:0 auto;}
+  .console-head{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--gray);text-transform:uppercase;letter-spacing:0.08em;}
+  .console-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 2s infinite;}
+  .console-body{height:400px;overflow-y:auto;padding:22px;font-family:var(--mono);font-size:14px;display:flex;flex-direction:column;gap:16px;}
+  .console-body::-webkit-scrollbar{width:6px;}
+  .console-body::-webkit-scrollbar-thumb{background:var(--line);}
+  .msg{max-width:88%;line-height:1.55;white-space:pre-wrap;}
+  .msg-coach{color:var(--white);}
+  .msg-coach .who{color:var(--accent);}
+  .msg-user{align-self:flex-end;color:var(--gray);text-align:right;}
+  .msg-user .who{color:var(--white);}
+  .who{display:block;font-size:11px;letter-spacing:0.08em;margin-bottom:4px;text-transform:uppercase;}
+  .cursor{display:inline-block;width:8px;height:14px;background:var(--accent);animation:blink 1s step-start infinite;vertical-align:middle;margin-left:2px;}
+  @keyframes blink{50%{opacity:0;}}
+  .quick-prompts{display:flex;gap:8px;flex-wrap:wrap;padding:0 22px 16px;}
+  .quick-prompt{font-family:var(--mono);font-size:11px;border:1px solid var(--line);color:var(--gray);padding:7px 12px;background:none;transition:all 0.2s;}
+  .quick-prompt:hover{border-color:var(--accent);color:var(--accent);}
+  .console-input{display:flex;border-top:1px solid var(--line);}
+  .console-input input{flex:1;background:transparent;border:none;padding:18px 22px;font-family:var(--mono);font-size:14px;color:var(--white);}
+  .console-input input::placeholder{color:var(--gray);}
+  .console-input input:focus{outline:none;}
+  .console-input button{padding:0 26px;background:var(--accent);color:var(--black);border:none;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:0.05em;transition:opacity 0.2s;}
+  .console-input button:hover{opacity:0.85;}
+  .console-input button:disabled{opacity:0.4;cursor:not-allowed;}
+  .coach-hint{text-align:center;color:var(--gray);font-size:13px;margin-top:20px;font-family:var(--mono);}
+
+  /* FOOTER */
+  footer{padding:60px 0 40px;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:50px;}
+  .footer-logo{font-family:var(--display);font-size:26px;margin-bottom:14px;}
+  .footer-logo span{color:var(--accent);}
+  .footer-col-title{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray);margin-bottom:14px;}
+  .footer-col p, .footer-col a{display:block;color:var(--white);font-size:14px;margin-bottom:8px;}
+  .footer-col a:hover{color:var(--accent);}
+  .footer-bottom{display:flex;justify-content:space-between;padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--gray);flex-wrap:wrap;gap:10px;}
+
+  @media (max-width:1180px){
+    .navlinks{display:none;}
+    .navtoggle{display:block;}
+    .philosophy-grid, .plans, .lead-box{grid-template-columns:1fr;}
+    .programs-grid{grid-template-columns:1fr 1fr;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .info-grid{grid-template-columns:1fr;}
+    .calc-form{grid-template-columns:1fr 1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:520px){
+    .programs-grid, .calc-form{grid-template-columns:1fr;}
+    .hero-actions{flex-direction:column;}
+    .calc-tabs{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<div style="background:#141412;color:#f3f1ec;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.03em;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;flex-wrap:wrap;border-bottom:2px solid #ff4e1f;">
+  <span style="background:#ff4e1f;color:#141412;padding:3px 8px;font-weight:700;text-transform:uppercase;">Example Site — Custom Build</span>
+  <span>A demo built to show what's possible. FORGE is not a real business.</span>
+  <a href="portfolio.html" style="color:#ff4e1f;text-decoration:underline;">← Back to Portfolio</a>
+</div>
+
+<nav>
+  <div class="logo">FOR<span>GE</span></div>
+  <div class="navlinks">
+    <a href="#gallery">Gallery</a>
+    <a href="#classes">Classes</a>
+    <a href="#trainers">Trainers</a>
+    <a href="#calculators">Calculators</a>
+    <a href="#membership">Membership</a>
+    <a href="#faq">FAQ</a>
+    <a href="#coach">Coach</a>
+  </div>
+  <div class="nav-right">
+    <a href="#trial" class="nav-cta">Free Trial</a>
+    <button class="navtoggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#gallery">Gallery</a>
+  <a href="#classes">Classes</a>
+  <a href="#trainers">Trainers</a>
+  <a href="#calculators">Calculators</a>
+  <a href="#membership">Membership</a>
+  <a href="#info">Gym Info</a>
+  <a href="#faq">FAQ</a>
+  <a href="#coach">Coach</a>
+  <a href="#trial">Free Trial</a>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Open 5AM – 11PM · Downtown</div>
+    <h1>Strength is<br>built, <span class="out">not</span><br>born.</h1>
+    <p class="hero-sub">A no-frills strength and conditioning gym. Real equipment, real coaching, and an AI coach on call when we're not.</p>
+    <div class="hero-actions">
+      <a href="#trial" class="btn-primary">Start Free Trial</a>
+      <a href="#coach" class="btn-ghost">Talk to Coach →</a>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="philosophy">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">01</span><span class="label-title">Philosophy</span><span class="label-line"></span></div>
+    <div class="philosophy-grid">
+      <div class="philosophy-lead">No mirrors on the wall — just <span class="accent">chalk, iron, and a clock.</span></div>
+      <div class="philosophy-body">
+        <p>FORGE was built for people who want to get strong without the theatrics. One open floor, barbells, plates, and a program that changes every day so your body never gets comfortable.</p>
+        <p>We coach in person because form matters more than motivation. And when you're training on your own, our AI coach is there to answer the question a human isn't awake for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="programs">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">02</span><span class="label-title">Programs</span><span class="label-line"></span></div>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card"><div class="program-time">45 MIN</div><div class="program-title">Strength</div><div class="program-desc">Squat, bench, deadlift, press — cycled on a 12-week progression.</div></div>
+    <div class="program-card"><div class="program-time">30 MIN</div><div class="program-title">HIIT</div><div class="program-desc">High-output intervals. Rowers, sleds, and bodyweight circuits.</div></div>
+    <div class="program-card"><div class="program-time">50 MIN</div><div class="program-title">Spin</div><div class="program-desc">Rhythm-based cycling, climbs and sprints, coach-led playlists.</div></div>
+    <div class="program-card"><div class="program-time">55 MIN</div><div class="program-title">Yoga</div><div class="program-desc">Vinyasa flow for strength, breath, and range of motion.</div></div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">02.5</span><span class="label-title">The Floor</span><span class="label-line"></span></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-tile">
+      <img src="https://images.unsplash.com/photo-1620188526357-ff08e03da266?auto=format&fit=crop&w=600&q=70" alt="Barbell on the gym floor" loading="lazy">
+      <div class="gallery-caption">The Floor</div>
+    </div>
+    <div class="gallery-tile">
+      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=70" alt="Member about to lift a barbell" loading="lazy">
+      <div class="gallery-caption">Strength Session</div>
+    </div>
+    <div class="gallery-tile">
+      <img src="https://images.unsplash.com/photo-1526401485004-46910ecc8e51?auto=format&fit=crop&w=600&q=70" alt="Bumper plates" loading="lazy">
+      <div class="gallery-caption">Plates &amp; Iron</div>
+    </div>
+    <div class="gallery-tile">
+      <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&q=70" alt="Member weightlifting" loading="lazy">
+      <div class="gallery-caption">Open Floor</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES / BOOKING -->
+<section class="section" id="classes">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">03</span><span class="label-title">Classes</span><span class="label-line"></span></div>
+    <p class="section-sub">Book a spot, join a waitlist, or add a class to your calendar. This booking flow is a live demo — nothing here is sent to a real system yet.</p>
+    <div class="chip-row" id="chipRow"></div>
+    <div class="class-grid" id="classGrid"></div>
+  </div>
+</section>
+
+<!-- TRAINERS -->
+<section class="section" id="trainers">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">04</span><span class="label-title">Trainers</span><span class="label-line"></span></div>
+    <p class="section-sub">Every trainer specializes differently. Tell us your goal and we'll point you to the best match.</p>
+    <div class="trainer-quiz">
+      <label for="goalSelect">Find my trainer — my goal is:</label>
+      <select id="goalSelect">
+        <option value="">Select a goal…</option>
+        <option value="strength">Build strength</option>
+        <option value="weightloss">Lose weight / conditioning</option>
+        <option value="mobility">Mobility / injury recovery</option>
+        <option value="flexibility">Flexibility / recovery (yoga)</option>
+      </select>
+    </div>
+    <div class="trainers-grid" id="trainerGrid"></div>
+  </div>
+</section>
+
+<!-- CALCULATORS -->
+<section class="section" id="calculators">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">05</span><span class="label-title">Calculators</span><span class="label-line"></span></div>
+    <p class="section-sub">General fitness math — not medical advice. Talk to a doctor before making major diet or training changes.</p>
+    <div class="calc-tabs" id="calcTabs">
+      <button class="calc-tab active" data-tab="bmi">BMI</button>
+      <button class="calc-tab" data-tab="tdee">Calories (TDEE)</button>
+      <button class="calc-tab" data-tab="macros">Macros</button>
+      <button class="calc-tab" data-tab="orm">One-Rep Max</button>
+    </div>
+
+    <div class="calc-panel active" id="panel-bmi">
+      <div class="calc-form">
+        <div class="field"><label>Height (ft)</label><input type="number" id="bmiHeightFt" placeholder="5"></div>
+        <div class="field"><label>Height (in)</label><input type="number" id="bmiHeightIn" placeholder="9"></div>
+        <div class="field"><label>Weight (lbs)</label><input type="number" id="bmiWeight" placeholder="160"></div>
+      </div>
+      <button class="calc-btn" onclick="calcBMI()">Calculate</button>
+      <div class="calc-result" id="result-bmi"></div>
+    </div>
+
+    <div class="calc-panel" id="panel-tdee">
+      <div class="calc-form">
+        <div class="field"><label>Sex</label><select id="tdeeSex"><option value="male">Male</option><option value="female">Female</option></select></div>
+        <div class="field"><label>Age</label><input type="number" id="tdeeAge" placeholder="30"></div>
+        <div class="field"><label>Height (ft)</label><input type="number" id="tdeeHeightFt" placeholder="5"></div>
+        <div class="field"><label>Height (in)</label><input type="number" id="tdeeHeightIn" placeholder="9"></div>
+        <div class="field"><label>Weight (lbs)</label><input type="number" id="tdeeWeight" placeholder="160"></div>
+        <div class="field"><label>Activity</label>
+          <select id="tdeeActivity">
+            <option value="1.2">Sedentary (desk job)</option>
+            <option value="1.375">Light (1-3x/wk)</option>
+            <option value="1.55" selected>Moderate (3-5x/wk)</option>
+            <option value="1.725">Active (6-7x/wk)</option>
+            <option value="1.9">Very active (2x/day)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcTDEE()">Calculate</button>
+      <div class="calc-result" id="result-tdee"></div>
+    </div>
+
+    <div class="calc-panel" id="panel-macros">
+      <div class="calc-form">
+        <div class="field"><label>Weight (lbs)</label><input type="number" id="macroWeight" placeholder="160"></div>
+        <div class="field"><label>Daily calories</label><input type="number" id="macroCals" placeholder="2400"></div>
+        <div class="field"><label>Goal</label>
+          <select id="macroGoal">
+            <option value="cut">Fat loss</option>
+            <option value="maintain" selected>Maintain</option>
+            <option value="bulk">Muscle gain</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcMacros()">Calculate</button>
+      <div class="calc-result" id="result-macros"></div>
+    </div>
+
+    <div class="calc-panel" id="panel-orm">
+      <div class="calc-form">
+        <div class="field"><label>Weight lifted (lbs)</label><input type="number" id="ormWeight" placeholder="225"></div>
+        <div class="field"><label>Reps completed</label><input type="number" id="ormReps" placeholder="5"></div>
+      </div>
+      <button class="calc-btn" onclick="calcORM()">Calculate</button>
+      <div class="calc-result" id="result-orm"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="schedule">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">06</span><span class="label-title">Weekly Overview</span><span class="label-line"></span></div>
+    <table class="schedule-table">
+      <thead><tr><th>Time</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
+      <tbody>
+        <tr><td>06:00</td><td>Strength</td><td>HIIT</td><td>Strength</td><td>HIIT</td><td>Strength</td><td>Open Floor</td></tr>
+        <tr><td>09:00</td><td>Yoga</td><td>Strength</td><td>Yoga</td><td>Strength</td><td>Spin</td><td>HIIT</td></tr>
+        <tr><td>17:30</td><td>Spin</td><td>Strength</td><td>HIIT</td><td>Strength</td><td>Open Floor</td><td>—</td></tr>
+        <tr><td>19:00</td><td>Strength</td><td>Yoga</td><td>Strength</td><td>Spin</td><td>Open Floor</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" id="membership">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">07</span><span class="label-title">Membership</span><span class="label-line"></span></div>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-name">Drop-In</div>
+        <div class="plan-price">$25 <span>/ visit</span></div>
+        <div class="plan-desc">For travelers and the undecided. $0 joining fee.</div>
+        <ul class="plan-list"><li>Single-day floor access</li><li>All scheduled classes</li><li>Equipment orientation</li></ul>
+        <a href="#coach" class="plan-btn">Ask Coach First</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-name">Monthly</div>
+        <div class="plan-price">$119 <span>/ mo</span></div>
+        <div class="plan-desc">$49 joining fee, waived this month.</div>
+        <ul class="plan-list"><li>Unlimited classes</li><li>Open floor access</li><li>AI coach, unlimited</li><li>Monthly progress check-in</li></ul>
+        <a href="#trial" class="plan-btn">Start Free Trial</a>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Annual</div>
+        <div class="plan-price">$999 <span>/ yr</span></div>
+        <div class="plan-desc">Two months free, paid up front.</div>
+        <ul class="plan-list"><li>Everything in Monthly</li><li>Quarterly 1:1 coaching session</li><li>Guest passes ×4</li></ul>
+        <a href="#trial" class="plan-btn">Start Free Trial</a>
+      </div>
+    </div>
+
+    <div class="cost-calc">
+      <div class="cost-calc-title">Estimate your monthly cost</div>
+      <div class="cost-row"><span>Plan</span>
+        <select id="costPlan">
+          <option value="25">Drop-In (per visit, ×4/mo est.)</option>
+          <option value="119" selected>Monthly — $119</option>
+          <option value="83.25">Annual — $999/yr ($83.25/mo)</option>
+        </select>
+      </div>
+      <div class="cost-row"><span>Personal training sessions (+$50 each)</span><input type="number" id="costPT" value="0" min="0"></div>
+      <div class="cost-row"><span>Guest passes (+$15 each)</span><input type="number" id="costGuest" value="0" min="0"></div>
+      <div class="cost-total"><span>Estimated total / mo</span><span class="amount" id="costTotal">$119</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="info">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">08</span><span class="label-title">Gym Info</span><span class="label-line"></span></div>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>Hours</h3>
+      <div class="info-row"><span>Mon – Fri</span><span>5:00 AM – 11:00 PM</span></div>
+      <div class="info-row"><span>Saturday</span><span>7:00 AM – 6:00 PM</span></div>
+      <div class="info-row"><span>Sunday</span><span>Closed</span></div>
+      <div class="info-row"><span>Holidays</span><span>Reduced hours*</span></div>
+      <p style="margin-top:12px;font-size:12px;">*Closed Thanksgiving &amp; Christmas Day. Check the Coach for this week's exact holiday hours.</p>
+    </div>
+    <div class="info-card">
+      <h3>Location &amp; Parking</h3>
+      <p>412 Foundry Street, Downtown</p>
+      <p>Free lot parking for members, entrance on 4th Ave. Street parking also available after 6PM.</p>
+    </div>
+    <div class="info-card">
+      <h3>Amenities</h3>
+      <ul><li>Showers &amp; towels provided</li><li>Free lockers (bring your own lock)</li><li>Dry sauna</li><li>Drop-in childcare, Mon–Fri 9–1</li><li>Free Wi-Fi throughout</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD CAPTURE / FREE TRIAL -->
+<section class="section" id="trial">
+  <div class="wrap">
+    <div class="lead-box">
+      <div class="lead-copy">
+        <div class="label-title">Free 7-Day Trial</div>
+        <p>Full floor access, one free class, and a quick chat with a coach about your goals. No credit card needed to start.</p>
+        <p class="demo-tag">Demo form — for the real site, wire this up to your CRM/email so leads actually reach you.</p>
+      </div>
+      <div>
+        <form class="lead-form" id="leadForm">
+          <input type="text" id="leadName" placeholder="Full name" required>
+          <input type="email" id="leadEmail" placeholder="Email address" required>
+          <input type="tel" id="leadPhone" placeholder="Phone number" required>
+          <select id="leadGoal">
+            <option value="">Primary goal (optional)</option>
+            <option value="strength">Build strength</option>
+            <option value="weightloss">Lose weight</option>
+            <option value="endurance">Build endurance</option>
+            <option value="general">General fitness</option>
+          </select>
+          <button type="submit" class="btn-primary" style="width:100%;">Claim Free Trial</button>
+        </form>
+        <div class="lead-confirm" id="leadConfirm">
+          <div class="big">You're in.</div>
+          <div style="color:var(--gray);font-family:var(--mono);font-size:13px;" id="leadConfirmText"></div>
+          <div class="demo-tag">Demo confirmation only — no email or SMS was actually sent.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">09</span><span class="label-title">FAQ</span><span class="label-line"></span></div>
+    <div id="faqList"></div>
+  </div>
+</section>
+
+<section class="coach-section" id="coach">
+  <div class="wrap">
+    <div class="label-row"><span class="label-num">10</span><span class="label-title">Coach</span><span class="label-line"></span></div>
+    <div class="console">
+      <div class="console-head"><div><span class="console-dot"></span>COACH — ONLINE</div><div>FORGE / AI</div></div>
+      <div class="console-body" id="chatBody">
+        <div class="msg msg-coach"><span class="who">Coach</span>Ask me about classes, trainers, membership costs, nutrition basics, or general training questions. I can't book anything for real yet, but I can point you to the right tool on this page.<span class="cursor"></span></div>
+      </div>
+      <div class="quick-prompts">
+        <button class="quick-prompt" onclick="askQuick('What class should I take as a beginner?')">Beginner class?</button>
+        <button class="quick-prompt" onclick="askQuick('Which membership plan fits someone who wants to lose weight and go 3x a week?')">Best plan for me</button>
+        <button class="quick-prompt" onclick="askQuick('How much protein should I eat if I weigh 165 lbs and want to build muscle?')">Protein needs</button>
+        <button class="quick-prompt" onclick="askQuick('Do you have showers and lockers?')">Amenities</button>
+      </div>
+      <div class="console-input">
+        <input type="text" id="chatInput" placeholder="Type a question and hit enter..." autocomplete="off">
+        <button id="chatSend">Send</button>
+      </div>
+    </div>
+    <p class="coach-hint">Try the quick prompts above, or ask anything about FORGE.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">FOR<span>GE</span></div>
+        <p style="color:var(--gray);font-size:14px;max-width:320px;">A no-frills strength and conditioning gym. Chalk, iron, and a clock.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Visit</div>
+        <p>412 Foundry Street</p>
+        <p>Mon–Fri 5AM–11PM · Sat 7AM–6PM</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Connect</div>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="#trial">Contact</a>
+        <a href="#coach">Ask Coach</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FORGE Strength &amp; Conditioning</span>
+      <span>Built with iron and a little AI</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------------- DATA ---------------- */
+const CLASSES = [
+  {id:1, day:'Mon', time:'06:00', type:'Strength', spots:2, capacity:12},
+  {id:2, day:'Mon', time:'17:30', type:'Spin', spots:0, capacity:16},
+  {id:3, day:'Tue', time:'06:00', type:'HIIT', spots:5, capacity:14},
+  {id:4, day:'Tue', time:'09:00', type:'Strength', spots:3, capacity:12},
+  {id:5, day:'Wed', time:'19:00', type:'Strength', spots:1, capacity:12},
+  {id:6, day:'Wed', time:'09:00', type:'Yoga', spots:6, capacity:20},
+  {id:7, day:'Thu', time:'06:00', type:'HIIT', spots:0, capacity:14},
+  {id:8, day:'Thu', time:'19:00', type:'Spin', spots:4, capacity:16},
+  {id:9, day:'Fri', time:'09:00', type:'Spin', spots:7, capacity:16},
+  {id:10, day:'Sat', time:'09:00', type:'HIIT', spots:8, capacity:14},
+];
+const TRAINERS = [
+  {name:'Jordan Reyes', spec:'Strength & Powerlifting', bio:'12 years coaching competitive lifters and total beginners alike.', days:'Mon / Wed / Fri', goals:['strength']},
+  {name:'Amara Chen', spec:'HIIT & Weight Loss', bio:'Builds sustainable conditioning programs around your schedule.', days:'Tue / Thu / Sat', goals:['weightloss']},
+  {name:'Leo Martinez', spec:'Mobility & Injury Recovery', bio:'Works with physical therapists on safe return-to-training plans.', days:'Mon / Thu', goals:['mobility']},
+  {name:'Priya Nair', spec:'Yoga & Recovery', bio:'Vinyasa and restorative flow, focused on breath and range of motion.', days:'Wed / Sat', goals:['flexibility']},
+];
+const FAQS = [
+  {q:'Do you have showers?', a:'Yes — full shower facilities and towel service are included for all members.'},
+  {q:'Is parking free?', a:'Yes, free lot parking for members off 4th Ave. Street parking is also available after 6PM.'},
+  {q:'Is there Wi-Fi?', a:'Free Wi-Fi is available throughout the gym.'},
+  {q:'Can I bring a guest?', a:'Monthly and Annual members get guest passes — 4 per year on Annual, ask Coach about add-on passes on Monthly.'},
+  {q:'Are children allowed?', a:'We offer drop-in childcare Mon–Fri 9AM–1PM. Outside those hours, the floor is 16+.'},
+  {q:'What should I bring?', a:'Just workout clothes and a water bottle — towels and lockable storage are provided (bring your own lock).'},
+  {q:'Are towels provided?', a:'Yes, fresh towels are provided at check-in.'},
+  {q:'Are lockers included?', a:'Yes, day-use lockers are free — bring your own padlock or rent one at the front desk.'},
+];
+
+/* ---------------- CLASSES / BOOKING ---------------- */
+const chipRow = document.getElementById('chipRow');
+const classGrid = document.getElementById('classGrid');
+const bookedIds = new Set();
+const waitlistIds = new Set();
+let activeFilter = 'All';
+
+function renderChips(){
+  const types = ['All', ...new Set(CLASSES.map(c=>c.type))];
+  chipRow.innerHTML = types.map(t => `<button class="chip ${t===activeFilter?'active':''}" data-type="${t}">${t}</button>`).join('');
+  chipRow.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{ activeFilter = chip.dataset.type; renderChips(); renderClasses(); });
+  });
+}
+
+function renderClasses(){
+  const list = activeFilter==='All' ? CLASSES : CLASSES.filter(c=>c.type===activeFilter);
+  classGrid.innerHTML = list.map(c=>{
+    const pct = Math.max(0, Math.round((c.spots/c.capacity)*100));
+    const isBooked = bookedIds.has(c.id);
+    const isWaitlisted = waitlistIds.has(c.id);
+    const full = c.spots<=0;
+    let btnLabel, btnClass;
+    if(isBooked){ btnLabel='✓ Booked — Add to calendar'; btnClass='booked'; }
+    else if(isWaitlisted){ btnLabel='On waitlist'; btnClass='full'; }
+    else if(full){ btnLabel='Join waitlist'; btnClass='full'; }
+    else{ btnLabel='Book spot'; btnClass=''; }
+    return `<div class="class-card">
+      <div class="class-top"><span class="class-day">${c.day}</span><span class="class-time">${c.time}</span></div>
+      <div class="class-type">${c.type}</div>
+      <div class="class-meta">${full ? 'Full — waitlist open' : c.spots+' spots left of '+c.capacity}</div>
+      <div class="capacity-bar"><div class="capacity-fill" style="width:${pct}%"></div></div>
+      <button class="class-btn ${btnClass}" onclick="handleBook(${c.id})">${btnLabel}</button>
+    </div>`;
+  }).join('');
+}
+
+function handleBook(id){
+  const c = CLASSES.find(x=>x.id===id);
+  if(bookedIds.has(id)){
+    alert(`Demo: "${c.type}" (${c.day} ${c.time}) added to your calendar.`);
+    return;
+  }
+  if(waitlistIds.has(id)) return;
+  if(c.spots<=0){
+    waitlistIds.add(id);
+    alert(`Demo: You're on the waitlist for ${c.type} (${c.day} ${c.time}). We'll notify you if a spot opens.`);
+  }else{
+    c.spots -= 1;
+    bookedIds.add(id);
+    alert(`Demo booking confirmed: ${c.type} on ${c.day} at ${c.time}.`);
+  }
+  renderClasses();
+}
+renderChips();
+renderClasses();
+
+/* ---------------- TRAINERS ---------------- */
+const trainerGrid = document.getElementById('trainerGrid');
+const goalSelect = document.getElementById('goalSelect');
+function renderTrainers(matchGoal){
+  trainerGrid.innerHTML = TRAINERS.map(t=>{
+    const isMatch = matchGoal && t.goals.includes(matchGoal);
+    const initials = t.name.split(' ').map(n=>n[0]).join('');
+    return `<div class="trainer-card ${isMatch?'match':''}">
+      ${isMatch ? '<div class="match-tag">Recommended</div>' : ''}
+      <div class="trainer-avatar">${initials}</div>
+      <div class="trainer-name">${t.name}</div>
+      <div class="trainer-spec">${t.spec}</div>
+      <div class="trainer-bio">${t.bio}</div>
+      <div class="trainer-days">Available: ${t.days}</div>
+      <button class="class-btn" onclick="alert('Demo: consultation request sent to ${t.name}. They will reach out to confirm a time.')">Book consultation</button>
+    </div>`;
+  }).join('');
+}
+renderTrainers(null);
+goalSelect.addEventListener('change', ()=> renderTrainers(goalSelect.value));
+
+/* ---------------- CALCULATORS ---------------- */
+document.getElementById('calcTabs').addEventListener('click', (e)=>{
+  if(!e.target.classList.contains('calc-tab')) return;
+  document.querySelectorAll('.calc-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.calc-panel').forEach(p=>p.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('panel-'+e.target.dataset.tab).classList.add('active');
+});
+
+function calcBMI(){
+  const ft = parseFloat(document.getElementById('bmiHeightFt').value) || 0;
+  const inch = parseFloat(document.getElementById('bmiHeightIn').value) || 0;
+  const w = parseFloat(document.getElementById('bmiWeight').value);
+  const totalIn = ft*12 + inch;
+  const box = document.getElementById('result-bmi');
+  if(!totalIn || !w){ box.innerHTML = 'Enter height and weight.'; box.classList.add('show'); return; }
+  const bmi = (703 * w) / Math.pow(totalIn, 2);
+  let cat = 'Normal';
+  if(bmi<18.5) cat='Underweight'; else if(bmi>=25 && bmi<30) cat='Overweight'; else if(bmi>=30) cat='Obese';
+  box.innerHTML = `<div class="big">${bmi.toFixed(1)}</div><div>${cat}</div><div class="note">BMI is a rough population-level screening tool — it doesn't account for muscle mass. Talk to a professional for a fuller picture.</div>`;
+  box.classList.add('show');
+}
+
+function calcTDEECore(){
+  const sex = document.getElementById('tdeeSex').value;
+  const age = parseFloat(document.getElementById('tdeeAge').value);
+  const ft = parseFloat(document.getElementById('tdeeHeightFt').value) || 0;
+  const inch = parseFloat(document.getElementById('tdeeHeightIn').value) || 0;
+  const w = parseFloat(document.getElementById('tdeeWeight').value);
+  const act = parseFloat(document.getElementById('tdeeActivity').value);
+  const totalIn = ft*12 + inch;
+  if(!age||!totalIn||!w) return null;
+  // Convert to metric internally for Mifflin-St Jeor, then report in US units
+  const wKg = w * 0.453592;
+  const hCm = totalIn * 2.54;
+  const bmr = sex==='male' ? (10*wKg + 6.25*hCm - 5*age + 5) : (10*wKg + 6.25*hCm - 5*age - 161);
+  return Math.round(bmr*act);
+}
+function calcTDEE(){
+  const tdee = calcTDEECore();
+  const box = document.getElementById('result-tdee');
+  if(!tdee){ box.innerHTML = 'Fill in all fields.'; box.classList.add('show'); return; }
+  const w = parseFloat(document.getElementById('tdeeWeight').value);
+  const waterOz = Math.round(w * 0.5);
+  box.innerHTML = `<div class="big">${tdee} cal</div><div>Estimated maintenance calories / day</div><div class="note">~${tdee-500} cal/day for gradual fat loss, ~${tdee+300} cal/day for a lean bulk. Water target: roughly ${waterOz} oz/day (about ${(waterOz/8).toFixed(0)} cups) as a baseline.</div>`;
+  box.classList.add('show');
+}
+
+function calcMacros(){
+  const w = parseFloat(document.getElementById('macroWeight').value);
+  const cals = parseFloat(document.getElementById('macroCals').value);
+  const goal = document.getElementById('macroGoal').value;
+  const box = document.getElementById('result-macros');
+  if(!w||!cals){ box.innerHTML='Enter weight and daily calories.'; box.classList.add('show'); return; }
+  const proteinPerLb = goal==='cut' ? 1.0 : goal==='bulk' ? 0.9 : 0.8;
+  const proteinG = Math.round(w*proteinPerLb);
+  const proteinCals = proteinG*4;
+  const fatCals = cals*0.28;
+  const fatG = Math.round(fatCals/9);
+  const carbCals = Math.max(0, cals - proteinCals - fatCals);
+  const carbG = Math.round(carbCals/4);
+  box.innerHTML = `<div class="big">${proteinG}P / ${carbG}C / ${fatG}F</div><div>grams per day at ${cals} cal</div><div class="note">Rough starting point, not a prescription — adjust based on how you feel and perform over a few weeks.</div>`;
+  box.classList.add('show');
+}
+
+function calcORM(){
+  const w = parseFloat(document.getElementById('ormWeight').value);
+  const r = parseFloat(document.getElementById('ormReps').value);
+  const box = document.getElementById('result-orm');
+  if(!w||!r){ box.innerHTML='Enter weight and reps.'; box.classList.add('show'); return; }
+  const orm = r===1 ? w : w*(1+r/30);
+  box.innerHTML = `<div class="big">${orm.toFixed(1)}</div><div>Estimated one-rep max (Epley formula)</div><div class="note">Estimates get less accurate above ~10 reps. Always work up to true maxes with a spotter.</div>`;
+  box.classList.add('show');
+}
+
+/* ---------------- MEMBERSHIP COST CALC ---------------- */
+function updateCost(){
+  const plan = parseFloat(document.getElementById('costPlan').value);
+  const pt = parseInt(document.getElementById('costPT').value)||0;
+  const guest = parseInt(document.getElementById('costGuest').value)||0;
+  const total = plan + pt*50 + guest*15;
+  document.getElementById('costTotal').textContent = '$'+total.toFixed(2).replace(/\.00$/,'');
+}
+document.getElementById('costPlan').addEventListener('change', updateCost);
+document.getElementById('costPT').addEventListener('input', updateCost);
+document.getElementById('costGuest').addEventListener('input', updateCost);
+
+/* ---------------- LEAD FORM ---------------- */
+document.getElementById('leadForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('leadName').value.trim();
+  document.getElementById('leadForm').style.display = 'none';
+  const confirm = document.getElementById('leadConfirm');
+  document.getElementById('leadConfirmText').textContent = `Thanks, ${name}. In a real deployment, this would email/SMS your team the lead details and follow up with ${name} automatically.`;
+  confirm.classList.add('show');
+});
+
+/* ---------------- FAQ ---------------- */
+const faqList = document.getElementById('faqList');
+faqList.innerHTML = FAQS.map((f,i)=>`
+  <div class="faq-item" id="faq-${i}">
+    <button class="faq-q" onclick="toggleFaq(${i})"><span>${f.q}</span><span class="plus">+</span></button>
+    <div class="faq-a"><p>${f.a}</p></div>
+  </div>`).join('');
+function toggleFaq(i){ document.getElementById('faq-'+i).classList.toggle('open'); }
+
+/* ---------------- MOBILE NAV ---------------- */
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+navToggle.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>mobileMenu.classList.remove('open')));
+
+/* ---------------- CHATBOT ---------------- */
+const chatBody = document.getElementById('chatBody');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+
+const SYSTEM_PROMPT = `You are "Coach," the AI assistant for FORGE, a minimalist strength and conditioning gym. Use this knowledge base to answer accurately:
+
+CLASSES: Strength (45min, barbell fundamentals), HIIT (30min, intervals on rowers/sleds/bodyweight), Spin (50min, coach-led cycling), Yoga (55min, vinyasa flow), Open Floor (unstructured). Weekly pattern: Strength/HIIT most weekday mornings and evenings, Yoga Wed/Sat mornings, Spin Mon/Thu evenings and Fri mornings. Exact bookable class slots with live spot counts are shown in the Classes section of this page — encourage users to book there, and mention if a class is full that they can join the waitlist there.
+
+TRAINERS: Jordan Reyes (Strength & Powerlifting, Mon/Wed/Fri), Amara Chen (HIIT & Weight Loss, Tue/Thu/Sat), Leo Martinez (Mobility & Injury Recovery, Mon/Thu), Priya Nair (Yoga & Recovery, Wed/Sat). Point users to the Trainers section's goal-matching tool to find their best fit and request a consultation.
+
+MEMBERSHIP: Drop-In $25/visit, no joining fee. Monthly $119/mo (unlimited classes + open floor + unlimited AI coach + monthly check-in), $49 joining fee currently waived. Annual $999/yr (~$83.25/mo, everything in Monthly + quarterly 1:1 coaching + 4 guest passes). Extra personal training sessions are +$50 each, extra guest passes +$15 each — point users to the cost estimator in the Membership section for a personalized total. A 7-day free trial is available via the Free Trial section (no credit card required).
+
+HOURS & LOCATION: Mon–Fri 5AM–11PM, Sat 7AM–6PM, closed Sunday. Closed Thanksgiving and Christmas Day with reduced hours around other holidays. Address: 412 Foundry Street, Downtown. Free member lot parking off 4th Ave; street parking available after 6PM.
+
+AMENITIES: Showers and towels included, free day-use lockers (bring your own lock or rent one), dry sauna, drop-in childcare Mon–Fri 9AM–1PM, free Wi-Fi. Floor is 16+ outside childcare hours.
+
+CALCULATORS AVAILABLE ON PAGE: BMI, TDEE/calorie estimate, macro split, one-rep max (Epley formula). If a user asks for one of these calculations, you can either compute it yourself in the chat using standard formulas (Mifflin-St Jeor for BMR, Epley for 1RM) or point them to the Calculators section to get an interactive result — prefer giving a quick estimate directly in chat AND mentioning the calculator exists for a saved/adjustable version.
+
+UNITS: This gym uses US customary units everywhere — weight in pounds (lbs), height in feet/inches, water intake in ounces or cups, temperature in Fahrenheit. Always answer in these units, even if a user asks using kg or cm (convert for them and state the US figure).
+
+BOOKING BEHAVIOR: You cannot actually book classes, reserve trainers, or process payments — those are demo interactions on this page (clearly marked as demos). If a user wants to book something, tell them to use the relevant section (Classes / Trainers / Free Trial) and briefly describe what happens there. Never claim to have completed a real booking, payment, or account change.
+
+FITNESS & NUTRITION GUIDANCE: You can give general, safe guidance for healthy adults — beginner workout structure, warm-up/cooldown basics, recovery tips, general protein/calorie/hydration guidance, general supplement info (e.g. creatine, protein powder, what they commonly do and typical dosing ranges from mainstream sports-nutrition sources). You must NOT diagnose injuries, prescribe treatment, or give specific medical advice — if someone describes pain, an injury, or a medical condition, tell them to see a doctor or physical therapist rather than assessing it yourself, and avoid guessing at causes.
+
+TONE: Direct, encouraging, no fitness-influencer hype, no filler. Keep answers concise (2-5 sentences) unless the user asks for a detailed plan or breakdown.`;
+
+function addMessage(who, text, cls){
+  const div = document.createElement('div');
+  div.className = 'msg ' + cls;
+  const whoSpan = document.createElement('span');
+  whoSpan.className = 'who';
+  whoSpan.textContent = who;
+  div.appendChild(whoSpan);
+  div.appendChild(document.createTextNode(text));
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+function addTyping(){
+  const div = document.createElement('div');
+  div.className = 'msg msg-coach';
+  div.id = 'typingIndicator';
+  div.innerHTML = '<span class="who">Coach</span>thinking<span class="cursor"></span>';
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+function removeTyping(){ const el=document.getElementById('typingIndicator'); if(el) el.remove(); }
+
+let history = [];
+
+async function sendMessage(){
+  const text = chatInput.value.trim();
+  if(!text) return;
+  chatInput.value = '';
+  chatSend.disabled = true;
+  chatInput.disabled = true;
+  addMessage('You', text, 'msg-user');
+  history.push({ role: 'user', content: text });
+  addTyping();
+  try{
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ system: SYSTEM_PROMPT, messages: history })
+    });
+    const data = await response.json();
+    removeTyping();
+    const textBlocks = (data.content || []).filter(b => b.type === 'text').map(b => b.text);
+    const reply = textBlocks.join('\n').trim() || "Sorry, I couldn't get a response. Try again.";
+    addMessage('Coach', reply, 'msg-coach');
+    history.push({ role: 'assistant', content: reply });
+  }catch(err){
+    removeTyping();
+    addMessage('Coach', "Connection dropped. Check your network and try again.", 'msg-coach');
+    console.error('Coach chat error:', err);
+  }finally{
+    chatSend.disabled = false;
+    chatInput.disabled = false;
+    chatInput.focus();
+  }
+}
+function askQuick(text){ chatInput.value = text; sendMessage(); }
+chatSend.addEventListener('click', sendMessage);
+chatInput.addEventListener('keydown', (e) => { if(e.key === 'Enter') sendMessage(); });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peak Comfort HVAC | Heating & Cooling Experts</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --deep: #0D1B2A;
+    --teal: #1B6CA8;
+    --sky: #4FC3F7;
+    --ice: #EAF6FF;
+    --warm: #F5F0EB;
+    --slate: #64748B;
+    --white: #FFFFFF;
+    --accent: #FF6B35;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--white);
+    color: var(--deep);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    height: 70px;
+    border-bottom: 1px solid #e8edf2;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--deep);
+  }
+  .logo-icon {
+    background: var(--teal);
+    color: var(--white);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+  .logo span { color: var(--teal); }
+  .nav-links a {
+    color: var(--slate);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-left: 2rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-phone {
+    background: var(--teal);
+    color: var(--white) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 700 !important;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--deep) 0%, #1a3a5c 100%);
+    padding: 100px 6% 80px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(79,195,247,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(79,195,247,0.12);
+    border: 1px solid rgba(79,195,247,0.25);
+    color: var(--sky);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em {
+    color: var(--sky);
+    font-style: normal;
+  }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.05rem;
+    margin-bottom: 2.2rem;
+    max-width: 460px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-main {
+    background: var(--accent);
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-main:hover { background: #e55a25; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.25);
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.6); }
+  .review-strip {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.85rem;
+  }
+  .stars { color: #FFC107; font-size: 1rem; }
+  .hero-panel {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+  }
+  .panel-header {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--sky);
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+  }
+  .service-tag-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.8rem; }
+  .service-tag {
+    background: rgba(79,195,247,0.1);
+    border: 1px solid rgba(79,195,247,0.2);
+    color: var(--sky);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.35rem 0.8rem;
+    border-radius: 5px;
+  }
+  .panel-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 1.5rem;
+  }
+  .pstat-num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+  }
+  .pstat-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.25rem; }
+
+  /* SERVICES */
+  .services { padding: 90px 6%; background: var(--white); }
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.6rem;
+  }
+  .section-h2 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    color: var(--deep);
+    margin-bottom: 0.5rem;
+  }
+  .section-desc {
+    color: var(--slate);
+    font-size: 1rem;
+    max-width: 500px;
+    margin-bottom: 3rem;
+  }
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .scard {
+    border: 1.5px solid #E2ECF5;
+    border-radius: 12px;
+    padding: 2rem;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .scard:hover {
+    border-color: var(--teal);
+    box-shadow: 0 8px 30px rgba(27,108,168,0.1);
+    transform: translateY(-3px);
+  }
+  .scard-icon {
+    width: 48px; height: 48px;
+    background: var(--ice);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .scard h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .scard p { font-size: 0.88rem; color: var(--slate); }
+
+  /* GALLERY */
+  .gallery { padding: 80px 6%; background: var(--warm); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .gitem {
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: #cde6f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    position: relative;
+  }
+  .gitem-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(13,27,42,0.8));
+    color: var(--white);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.6rem 0.8rem;
+  }
+  .gitem:nth-child(1) { background: #b3d9f2; }
+  .gitem:nth-child(2) { background: #a8cfe8; }
+  .gitem:nth-child(3) { background: #bde2f7; }
+  .gitem:nth-child(4) { background: #9dc8e5; }
+  .gitem:nth-child(5) { background: #c5e8fb; }
+  .gitem:nth-child(6) { background: #aad1ec; }
+  .gitem:nth-child(7) { background: #b7dbf5; }
+  .gitem:nth-child(8) { background: #93c4e0; }
+
+  /* GOOGLE BUSINESS */
+  .google-section { padding: 80px 6%; background: var(--deep); color: var(--white); }
+  .google-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .google-section h2 { color: var(--white); margin-bottom: 0.8rem; }
+  .google-section p { color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+  .gbiz-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1.8rem;
+    color: var(--deep);
+  }
+  .gbiz-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+  .gbiz-icon {
+    width: 50px; height: 50px;
+    background: var(--ice);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  }
+  .gbiz-name { font-weight: 800; font-size: 1rem; }
+  .gbiz-sub { font-size: 0.8rem; color: var(--slate); }
+  .gbiz-stars { color: #FFC107; margin-bottom: 0.25rem; }
+  .gbiz-reviews { font-size: 0.78rem; color: var(--slate); }
+  .gbiz-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--slate);
+    margin-bottom: 0.5rem;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 90px 6%; background: var(--ice); }
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .review-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    border-bottom: 3px solid var(--teal);
+  }
+  .review-stars { color: #FFC107; margin-bottom: 0.8rem; font-size: 0.9rem; }
+  .review-text {
+    font-size: 0.92rem;
+    color: var(--slate);
+    font-style: italic;
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+  }
+  .reviewer { font-weight: 700; font-size: 0.88rem; }
+  .review-loc { font-size: 0.8rem; color: var(--slate); }
+
+  /* CONTACT */
+  .contact {
+    padding: 90px 6%;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact h2 { margin-bottom: 0.5rem; }
+  .contact-sub { color: var(--slate); margin-bottom: 2rem; }
+  .cinfo-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .cinfo-icon {
+    width: 40px; height: 40px;
+    background: var(--ice);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .cinfo-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal); }
+  .cinfo-val { font-size: 0.95rem; font-weight: 600; }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 0.4rem;
+    color: var(--deep);
+  }
+  input, textarea, select {
+    width: 100%;
+    border: 1.5px solid #D8E4F0;
+    border-radius: 7px;
+    padding: 0.75rem 1rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--deep);
+    background: #FAFCFF;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--teal); }
+  textarea { resize: vertical; min-height: 110px; }
+  .btn-submit {
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: #155c90; }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,0.45);
+    padding: 3rem 6% 2rem;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+  }
+  .footer-brand { color: var(--white); font-weight: 800; font-size: 1.1rem; margin-bottom: 0.75rem; }
+  .footer-brand span { color: var(--sky); }
+  .footer-desc { font-size: 0.88rem; line-height: 1.7; }
+  .footer-col h4 {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--sky); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 1.5rem;
+    font-size: 0.82rem;
+    text-align: center;
+  }
+
+  .nav-toggle { display: none; background: none; border: none; color: #152238; font-size: 22px; cursor: pointer; }
+  .mobile-menu { display: none; flex-direction: column; background: #fff; border-top: 1px solid #eee; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { padding: 14px 6%; color: #152238; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-panel { display: none; }
+    .service-grid, .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .google-inner, .contact { grid-template-columns: 1fr; }
+    .review-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<div style="background:#152238;color:#F4F7FA;font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.03em;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;flex-wrap:wrap;border-bottom:2px solid #FF6B35;">
+  <span style="background:#FF6B35;color:#152238;padding:3px 8px;font-weight:700;text-transform:uppercase;">Example Site — Standard Package</span>
+  <span>A demo built to show what's included. Peak Comfort HVAC is not a real business.</span>
+  <a href="portfolio.html" style="color:#FF6B35;text-decoration:underline;">← Back to Portfolio</a>
+</div>
+
+<nav>
+  <div class="logo">
+    <div class="logo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.9 6l14.2 12M4.9 18L19.1 6M2 12h20"/></svg></div>
+    Peak <span>Comfort</span> HVAC
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:2055550200" class="nav-phone"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:5px;flex-shrink:0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(205) 555-0200</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#contact">Contact</a>
+  <a href="tel:2055550200">Call — (205) 555-0200</a>
+</div>
+
+<section class="hero">
+  <div>
+    <div class="hero-badge">★ 4.9 Rating · 200+ Google Reviews</div>
+    <h1>Heating & Cooling<br>You Can <em>Count On</em></h1>
+    <p>From new installations to emergency repairs, Peak Comfort keeps your home at the perfect temperature year-round. Serving Blount County since 2010.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-main">Schedule Service</a>
+      <a href="tel:2055550200" class="btn-ghost">Call Us Now</a>
+    </div>
+    <div class="review-strip">
+      <span class="stars">★★★★★</span>
+      <span>Rated 4.9 by 200+ homeowners across Blount County</span>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <div class="panel-header">Services Available</div>
+    <div class="service-tag-list">
+      <span class="service-tag">AC Installation</span>
+      <span class="service-tag">Furnace Repair</span>
+      <span class="service-tag">Heat Pumps</span>
+      <span class="service-tag">Duct Cleaning</span>
+      <span class="service-tag">Tune-Ups</span>
+      <span class="service-tag">Emergency</span>
+    </div>
+    <div class="panel-stats">
+      <div>
+        <div class="pstat-num">14+</div>
+        <div class="pstat-label">Years in Business</div>
+      </div>
+      <div>
+        <div class="pstat-num">2k+</div>
+        <div class="pstat-label">Jobs Done</div>
+      </div>
+      <div>
+        <div class="pstat-num">24/7</div>
+        <div class="pstat-label">Emergency</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-eyebrow">What We Do</div>
+  <h2 class="section-h2">Full-Service Heating & Cooling</h2>
+  <p class="section-desc">Everything your HVAC system needs — from routine maintenance to complete system replacements.</p>
+  <div class="service-grid">
+    <div class="scard">
+      <h3>AC Installation & Repair</h3>
+      <p>Central air, mini-splits, and window units. New installs and existing system repairs done right.</p>
+    </div>
+    <div class="scard">
+      <h3>Heating & Furnace</h3>
+      <p>Gas, electric, and heat pump systems. Repair, replace, or tune up before winter hits.</p>
+    </div>
+    <div class="scard">
+      <h3>Duct Cleaning</h3>
+      <p>Clean ducts mean better air quality and lower energy bills. We clean entire duct systems top to bottom.</p>
+    </div>
+    <div class="scard">
+      <h3>Maintenance Plans</h3>
+      <p>Annual tune-ups to keep your system efficient and catch problems before they become breakdowns.</p>
+    </div>
+    <div class="scard">
+      <h3>Thermostat & Controls</h3>
+      <p>Smart thermostat installation and wiring. Save money on your energy bill automatically.</p>
+    </div>
+    <div class="scard">
+      <h3>24/7 Emergency Service</h3>
+      <p>HVAC emergency at 2am? We answer the phone. Fast response to get you comfortable again.</p>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="section-eyebrow">Our Work</div>
+  <h2 class="section-h2">Recent Installations</h2>
+  <p class="section-desc">A look at some of the jobs we've completed for homeowners across the county.</p>
+  <div class="gallery-grid">
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1761642119720-1ce47b16d09b?auto=format&fit=crop&w=700&q=70" alt="Residential Install" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="gitem-label">Residential Install</div></div>
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1757219525975-03b5984bc6e8?auto=format&fit=crop&w=700&q=70" alt="Central AC Unit" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="gitem-label">Central AC Unit</div></div>
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1635604866833-70844856de75?auto=format&fit=crop&w=700&q=70" alt="Duct Work" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="gitem-label">Duct Work</div></div>
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?auto=format&fit=crop&w=700&q=70" alt="Thermostat Setup" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="gitem-label">Thermostat Setup</div></div>
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1722131646940-b821a6cc6252?auto=format&fit=crop&w=700&q=70" alt="Furnace Replace" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="gitem-label">Furnace Replace</div></div>
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1729183672500-46c52a897de5?auto=format&fit=crop&w=700&q=70" alt="New Construction" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="gitem-label">New Construction</div></div>
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1673784716250-160cf5cb3a19?auto=format&fit=crop&w=700&q=70" alt="Mini-Split Install" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="gitem-label">Mini-Split Install</div></div>
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1568634699096-82c9765548a0?auto=format&fit=crop&w=700&q=70" alt="Tune-Up Complete" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="gitem-label">Tune-Up Complete</div></div>
+  </div>
+</section>
+
+<section class="google-section">
+  <div class="google-inner">
+    <div>
+      <div class="section-eyebrow" style="color: var(--sky)">Google Business</div>
+      <h2 class="section-h2">Find Us on Google Maps</h2>
+      <p>We're easy to find. Search "Peak Comfort HVAC" and you'll see our full profile — hours, reviews, photos, and directions. We'll help set this up for you so customers can find your business instantly.</p>
+      <a href="#contact" class="btn-main" style="display:inline-block; margin-top:0.5rem;">Get Directions</a>
+    </div>
+    <div class="gbiz-card">
+      <div class="gbiz-top">
+        <div class="gbiz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.9 6l14.2 12M4.9 18L19.1 6M2 12h20"/></svg></div>
+        <div>
+          <div class="gbiz-name">Peak Comfort HVAC</div>
+          <div class="gbiz-sub">HVAC Contractor · Oneonta, AL</div>
+        </div>
+      </div>
+      <div class="gbiz-stars">★★★★★</div>
+      <div class="gbiz-reviews">4.9 · 218 reviews on Google</div>
+      <div style="margin: 1.2rem 0; height:1px; background: #eee;"></div>
+      <div class="gbiz-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:5px;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>1240 Valley Rd, Oneonta, AL 35121</div>
+      <div class="gbiz-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:5px;flex-shrink:0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(205) 555-0200</div>
+      <div class="gbiz-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:5px;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Mon–Sat 7am–7pm</div>
+      <div class="gbiz-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:5px;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>Open Now</div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="reviews">
+  <div class="section-eyebrow">Customer Reviews</div>
+  <h2 class="section-h2">What Our Customers Say</h2>
+  <p class="section-desc">Straight from Google — what real homeowners in Blount County have to say.</p>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Our AC went out on a Friday night in July. Peak Comfort was here Saturday morning and had us cool by noon. Reasonable price and the tech was clean and professional."</p>
+      <div class="reviewer">Mark T.</div>
+      <div class="review-loc">Oneonta, AL</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"They replaced our 20-year-old unit and the difference in our power bill is unbelievable. Crew was in and out in half a day and left everything spotless."</p>
+      <div class="reviewer">Sandra L.</div>
+      <div class="review-loc">Blountsville, AL</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Called three companies and Peak Comfort was the only one who could come the same day. Fair price, honest diagnosis, and no upselling. They've earned a customer for life."</p>
+      <div class="reviewer">James H.</div>
+      <div class="review-loc">Cleveland, AL</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div>
+    <div class="section-eyebrow">Schedule Service</div>
+    <h2 class="section-h2">Book Your Appointment</h2>
+    <p class="contact-sub">Fill out the form and we'll confirm your appointment within 2 hours during business hours.</p>
+    <div class="cinfo-item">
+      <div class="cinfo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:5px;flex-shrink:0;"><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/></svg></div>
+      <div><div class="cinfo-label">Phone</div><div class="cinfo-val">(205) 555-0200</div></div>
+    </div>
+    <div class="cinfo-item">
+      <div class="cinfo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:5px;flex-shrink:0;"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <div><div class="cinfo-label">Email</div><div class="cinfo-val">service@peakcomforthvac.com</div></div>
+    </div>
+    <div class="cinfo-item">
+      <div class="cinfo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:5px;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div><div class="cinfo-label">Location</div><div class="cinfo-val">Oneonta, AL — Serving all of Blount County</div></div>
+    </div>
+    <div class="cinfo-item">
+      <div class="cinfo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:5px;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div><div class="cinfo-label">Hours</div><div class="cinfo-val">Mon–Sat 7am–7pm · Emergency 24/7</div></div>
+    </div>
+  </div>
+  <div id="standardFormWrap">
+    <div class="form-row form-group">
+      <div>
+        <label>First Name</label>
+        <input type="text" id="standardFirst" placeholder="Jane">
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input type="text" id="standardLast" placeholder="Smith">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" id="standardPhone" placeholder="(205) 555-0000">
+    </div>
+    <div class="form-group">
+      <label>Service Needed</label>
+      <select>
+        <option>Select a service…</option>
+        <option>AC Repair</option>
+        <option>AC Installation</option>
+        <option>Heating / Furnace</option>
+        <option>Duct Cleaning</option>
+        <option>Maintenance Tune-Up</option>
+        <option>Emergency Service</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Preferred Date</label>
+      <input type="date">
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea placeholder="Tell us about the issue…"></textarea>
+    </div>
+    <button class="btn-submit" onclick="submitStandardForm()">Request Appointment</button>
+  </div>
+  <div id="standardConfirm" style="display:none;padding:1.5rem;background:#F4F7FA;border:1px solid #d7dee6;text-align:center;border-radius:8px;">
+    <div style="font-weight:800;font-size:1.3rem;color:#152238;margin-bottom:0.4rem;">Appointment Requested</div>
+    <p id="standardConfirmText" style="color:#5b6b7d;font-size:0.9rem;"></p>
+    <p style="color:#5b6b7d;font-size:0.75rem;margin-top:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">Demo only — no appointment was actually booked</p>
+  </div>
+  <script>
+    function submitStandardForm(){
+      const first = document.getElementById('standardFirst').value.trim();
+      const last = document.getElementById('standardLast').value.trim();
+      const phone = document.getElementById('standardPhone').value.trim();
+      const name = (first || last) ? (first+' '+last).trim() : 'there';
+      document.getElementById('standardFormWrap').style.display = 'none';
+      document.getElementById('standardConfirmText').textContent = `Thanks, ${name}. In a real deployment we'd confirm this appointment${phone ? ' by calling '+phone : ''} within 2 business hours.`;
+      document.getElementById('standardConfirm').style.display = 'block';
+    }
+  </script>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Peak <span>Comfort</span> HVAC</div>
+      <p class="footer-desc">Blount County's trusted heating and cooling specialists since 2010. Licensed, insured, and dedicated to keeping you comfortable year-round.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#services">AC Repair</a>
+      <a href="#services">Heating</a>
+      <a href="#services">Installations</a>
+      <a href="#services">Maintenance</a>
+      <a href="#services">Emergency</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:2055550200">(205) 555-0200</a>
+      <a href="mailto:service@peakcomforthvac.com">service@peakcomforthvac.com</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Oneonta,+AL+35121" target="_blank" rel="noopener">Oneonta, AL 35121</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 Peak Comfort HVAC · All Rights Reserved · License #AL-HVAC-00841
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+</script>
+
+</body>
+</html>

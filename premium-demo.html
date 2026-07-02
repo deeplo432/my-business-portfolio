@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Copper Table | Farm-to-Table Dining in Oneonta, AL</title>
+<meta name="description" content="Seasonal farm-to-table dining in the heart of Blount County. Fresh ingredients, craft cocktails, and warm Southern hospitality. Reserve your table today.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:      #1A1410;
+    --copper:   #B5622A;
+    --copper-lt:#E8874A;
+    --parchment:#F5EEE3;
+    --cream:    #FBF7F2;
+    --muted:    #7A6F65;
+    --rule:     #E2D9CE;
+    --white:    #FFFFFF;
+    --green:    #3A5741;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    height: 68px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.04em;
+  }
+  .logo-mark em { color: var(--copper-lt); font-style: italic; }
+  .nav-links a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 0.83rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-left: 2rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-reserve {
+    background: var(--copper) !important;
+    color: var(--white) !important;
+    padding: 0.45rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 600 !important;
+  }
+  .nav-reserve:hover { background: var(--copper-lt) !important; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    background: var(--ink);
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 6% 80px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 40%, rgba(181,98,42,0.22) 0%, transparent 55%),
+                linear-gradient(to bottom, rgba(26,20,16,0.3) 0%, rgba(26,20,16,0.85) 100%);
+    z-index: 1;
+  }
+  .hero-texture {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(181,98,42,0.03) 60px, rgba(181,98,42,0.03) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(181,98,42,0.03) 60px, rgba(181,98,42,0.03) 61px);
+    z-index: 0;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+  }
+  .hero-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .hero-rule-line { flex: 1; max-width: 60px; height: 1px; background: var(--copper); }
+  .hero-rule-text {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper-lt);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.0;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { color: var(--copper-lt); font-style: italic; }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+    line-height: 1.75;
+  }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-copper {
+    background: var(--copper);
+    color: var(--white);
+    padding: 1rem 2.2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-copper:hover { background: var(--copper-lt); transform: translateY(-1px); }
+  .btn-outline-w {
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    padding: 1rem 2.2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: border-color 0.2s;
+  }
+  .btn-outline-w:hover { border-color: var(--white); }
+  .info-strip {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    flex-wrap: wrap;
+  }
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .info-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--copper-lt);
+  }
+  .info-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 100px 6%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .about-media {
+    position: relative;
+  }
+  .about-img-main {
+    background: #D4B896;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+  }
+  .about-img-accent {
+    position: absolute;
+    bottom: -30px; right: -30px;
+    width: 55%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--parchment);
+    border: 4px solid var(--white);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+  }
+  .section-kicker {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 1rem;
+  }
+  .display-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+    color: var(--ink);
+  }
+  .display-h2 em { color: var(--copper); font-style: italic; }
+  .body-text {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+  .about-stat-row {
+    display: flex;
+    gap: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    margin-top: 1.5rem;
+  }
+  .about-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--copper);
+    line-height: 1;
+  }
+  .about-stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.3rem;
+  }
+
+  /* MENU */
+  .menu-section {
+    padding: 100px 6%;
+    background: var(--ink);
+    color: var(--white);
+  }
+  .menu-section .section-kicker { color: var(--copper-lt); }
+  .menu-section .display-h2 { color: var(--white); }
+  .menu-tabs {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+  }
+  .menu-tab {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    padding-bottom: 1rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s;
+  }
+  .menu-tab.active {
+    color: var(--copper-lt);
+    border-bottom-color: var(--copper);
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .menu-item:nth-child(odd) { padding-right: 3rem; border-right: 1px solid rgba(255,255,255,0.07); }
+  .menu-item:nth-child(even) { padding-left: 3rem; }
+  .menu-item-info { flex: 1; }
+  .menu-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .menu-item-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+  .menu-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--copper-lt);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* GALLERY */
+  .gallery-section { padding: 100px 6%; background: var(--parchment); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 12px;
+    margin-top: 3rem;
+  }
+  .gphoto {
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .gphoto:first-child { grid-row: 1 / 3; }
+  .gphoto:nth-child(1) { background: #C8A882; }
+  .gphoto:nth-child(2) { background: #B8956A; }
+  .gphoto:nth-child(3) { background: #D4B896; }
+  .gphoto:nth-child(4) { background: #A8845A; }
+  .gphoto:nth-child(5) { background: #BEA278; }
+  .photo-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(26,20,16,0.75));
+    color: var(--white);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.8rem 1rem;
+  }
+  .social-strip {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--white);
+    border: 1.5px solid var(--rule);
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.55rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+  .social-btn:hover { border-color: var(--copper); color: var(--copper); }
+
+  /* BOOKING */
+  .booking-section {
+    padding: 100px 6%;
+    background: var(--green);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .booking-section .section-kicker { color: rgba(255,255,255,0.5); }
+  .booking-section .display-h2 { color: var(--white); }
+  .booking-section .body-text { color: rgba(255,255,255,0.6); }
+  .booking-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2.5rem;
+    color: var(--ink);
+  }
+  .booking-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  .book-form-group { margin-bottom: 1.2rem; }
+  .book-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .book-input, .book-select {
+    width: 100%;
+    border: 1.5px solid var(--rule);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .book-input:focus, .book-select:focus { border-color: var(--copper); }
+  .book-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .btn-book {
+    background: var(--copper);
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+  .btn-book:hover { background: var(--copper-lt); }
+
+  /* SEO SECTION */
+  .seo-section {
+    padding: 100px 6%;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .seo-visual {
+    background: var(--white);
+    border: 1.5px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .seo-bar {
+    background: #F1F3F4;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: #5F6368;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .seo-dots span {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 3px;
+  }
+  .seo-result {
+    padding: 1.5rem 1.5rem 0.5rem;
+    border-bottom: 1px solid #f0ece7;
+  }
+  .seo-url { font-size: 0.75rem; color: #1A6C37; margin-bottom: 0.3rem; }
+  .seo-title { color: #1A0DAB; font-size: 0.95rem; font-weight: 500; margin-bottom: 0.3rem; text-decoration: underline; cursor: pointer; }
+  .seo-snippet { font-size: 0.82rem; color: #4D5156; line-height: 1.6; }
+  .seo-rating { color: #F9A825; margin-right: 0.4rem; font-size: 0.8rem; }
+  .seo-rank-badge {
+    display: inline-block;
+    background: var(--copper);
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 100px 6%;
+    background: var(--ink);
+    color: var(--white);
+  }
+  .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .test-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 2rem;
+    position: relative;
+  }
+  .test-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: var(--copper);
+    line-height: 0.8;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  }
+  .test-text {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+  .test-author {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .test-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(181,98,42,0.25);
+    color: var(--copper);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .test-name { font-weight: 600; font-size: 0.9rem; color: var(--white); }
+  .test-stars { color: var(--copper-lt); font-size: 0.75rem; }
+
+  /* FOOTER */
+  footer {
+    background: #100D0A;
+    color: rgba(255,255,255,0.35);
+    padding: 5rem 6% 2.5rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .footer-logo em { color: var(--copper-lt); font-style: italic; }
+  .footer-tagline { font-size: 0.85rem; line-height: 1.8; color: rgba(255,255,255,0.35); }
+  .footer-social { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+  .f-social-btn {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .f-social-btn:hover { border-color: var(--copper); }
+  .footer-col h4 {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    font-size: 0.88rem;
+    margin-bottom: 0.6rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--copper-lt); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  .nav-toggle { display: none; background: none; border: none; color: var(--white); font-size: 22px; cursor: pointer; }
+  .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-top: 1px solid rgba(255,255,255,0.1); }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { padding: 14px 6%; color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; }
+
+  @media (max-width: 768px) {
+    .about, .booking-section, .seo-section { grid-template-columns: 1fr; }
+    .about-img-accent { display: none; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .menu-item:nth-child(odd) { padding-right: 0; border-right: none; }
+    .menu-item:nth-child(even) { padding-left: 0; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gphoto:first-child { grid-row: unset; }
+    .test-grid, .footer-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<div style="background:#1A1410;color:#FBF7F2;font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.03em;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;flex-wrap:wrap;border-bottom:2px solid #E8874A;">
+  <span style="background:#E8874A;color:#1A1410;padding:3px 8px;font-weight:700;text-transform:uppercase;">Example Site — Premium Package</span>
+  <span>A demo built to show what's included. The Copper Table is not a real business.</span>
+  <a href="portfolio.html" style="color:#E8874A;text-decoration:underline;">← Back to Portfolio</a>
+</div>
+
+<nav>
+  <div class="logo-mark">The <em>Copper</em> Table</div>
+  <div class="nav-links">
+    <a href="#about">Our Story</a>
+    <a href="#menu">Menu</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#book">Contact</a>
+    <a href="#book" class="nav-reserve">Reserve a Table</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">Our Story</a>
+  <a href="#menu">Menu</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#book">Contact</a>
+  <a href="#book">Reserve a Table</a>
+</div>
+
+<section class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-rule">
+      <div class="hero-rule-line"></div>
+      <div class="hero-rule-text">Oneonta, Alabama · Est. 2018</div>
+      <div class="hero-rule-line"></div>
+    </div>
+    <h1>Where the<br>Season <em>Sits</em><br>at the Table</h1>
+    <p>Farm-to-table dining rooted in Alabama. We source from local growers, change our menu with the seasons, and cook food that feels like home — just better.</p>
+    <div class="hero-buttons">
+      <a href="#book" class="btn-copper">Reserve a Table</a>
+      <a href="#menu" class="btn-outline-w">View Our Menu</a>
+    </div>
+    <div class="info-strip">
+      <div class="info-item">
+        <span class="info-label">Dinner</span>
+        <span class="info-val">Tue–Sun, 5–10pm</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Brunch</span>
+        <span class="info-val">Sat–Sun, 10am–2pm</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Location</span>
+        <span class="info-val">Main St, Oneonta AL</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Reservations</span>
+        <span class="info-val">(205) 555-0300</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-media">
+    <div class="about-img-main"><img src="https://images.unsplash.com/photo-1761095596765-c8abe01d3aea?auto=format&fit=crop&w=900&q=70" alt="Chef plating a dish in the kitchen" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+    <div class="about-img-accent"><img src="https://images.unsplash.com/photo-1757627550652-30788bfce978?auto=format&fit=crop&w=600&q=70" alt="Fresh local produce" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+  </div>
+  <div>
+    <div class="section-kicker">Our Story</div>
+    <h2 class="display-h2">Grown Here.<br>Cooked <em>With Care</em>.</h2>
+    <p class="body-text">The Copper Table opened in 2018 with one simple idea: cook honest food with ingredients we can trace to a specific farm, field, or family. We've been doing it ever since — changing the menu as Alabama's seasons do, and building relationships with the small growers who make it possible.</p>
+    <p class="body-text">Chef Maria Calloway grew up in Blount County. Her food remembers that — rooted in Southern tradition, with the refinement of fifteen years cooking in Charleston and Nashville before coming home.</p>
+    <div class="about-stat-row">
+      <div>
+        <div class="about-stat-num">18+</div>
+        <div class="about-stat-label">Local Farm Partners</div>
+      </div>
+      <div>
+        <div class="about-stat-num">7yr</div>
+        <div class="about-stat-label">Serving Blount County</div>
+      </div>
+      <div>
+        <div class="about-stat-num">4.9★</div>
+        <div class="about-stat-label">Google Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="section-kicker">Seasonal Menu</div>
+  <h2 class="display-h2" style="color:var(--white)">What We're<br>Cooking <em>Right Now</em></h2>
+  <div class="menu-tabs">
+    <div class="menu-tab active">Dinner</div>
+    <div class="menu-tab">Starters</div>
+    <div class="menu-tab">Brunch</div>
+    <div class="menu-tab">Cocktails</div>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Braised Short Rib</div>
+        <div class="menu-item-desc">Creekstone Farm beef, celery root purée, gremolata, roasted garlic jus</div>
+      </div>
+      <div class="menu-item-price">$38</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Pan-Seared Catfish</div>
+        <div class="menu-item-desc">Alabama pond-raised, black-eyed pea succotash, charred okra, lemon butter</div>
+      </div>
+      <div class="menu-item-price">$32</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Heritage Pork Chop</div>
+        <div class="menu-item-desc">Duroc breed, peach mostarda, sweet potato hash, sage brown butter</div>
+      </div>
+      <div class="menu-item-price">$36</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Summer Vegetable Risotto</div>
+        <div class="menu-item-desc">Local squash, tomato confit, Parmesan, basil oil, toasted breadcrumbs</div>
+      </div>
+      <div class="menu-item-price">$26</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Wood-Fired Chicken</div>
+        <div class="menu-item-desc">Free-range half chicken, Alabama white sauce, collard greens, cornbread</div>
+      </div>
+      <div class="menu-item-price">$30</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Gulf Shrimp & Grits</div>
+        <div class="menu-item-desc">Stone-ground Anson Mills grits, tasso ham, pickled peppers, parsley oil</div>
+      </div>
+      <div class="menu-item-price">$28</div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="section-kicker">Gallery</div>
+  <h2 class="display-h2">The Room.<br>The Food. <em>The Feeling</em>.</h2>
+  <div class="gallery-grid">
+    <div class="gphoto"><img src="https://images.unsplash.com/photo-1743866691397-50f22c9c72f1?auto=format&fit=crop&w=800&q=70" alt="The Dining Room" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="photo-label">The Dining Room</div></div>
+    <div class="gphoto"><img src="https://images.unsplash.com/photo-1706650616334-97875fae8521?auto=format&fit=crop&w=800&q=70" alt="Short Rib" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="photo-label">Short Rib</div></div>
+    <div class="gphoto"><img src="https://images.unsplash.com/photo-1757627550652-30788bfce978?auto=format&fit=crop&w=800&q=70" alt="Farm Sourcing" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="photo-label">Farm Sourcing</div></div>
+    <div class="gphoto"><img src="https://images.unsplash.com/photo-1500217052183-bc01eee1a74e?auto=format&fit=crop&w=800&q=70" alt="Craft Cocktails" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="photo-label">Craft Cocktails</div></div>
+    <div class="gphoto"><img src="https://images.unsplash.com/photo-1666633151676-428fe839c3b1?auto=format&fit=crop&w=800&q=70" alt="Seasonal Salad" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="photo-label">Seasonal Salad</div></div>
+  </div>
+  <div class="social-strip">
+    <span style="font-size:0.85rem; color:var(--muted); font-weight:500;">Follow along on social</span>
+    <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn">IG &nbsp;@thecoppertable</a>
+    <a href="https://facebook.com" target="_blank" rel="noopener" class="social-btn">FB &nbsp;/CopperTableAL</a>
+  </div>
+</section>
+
+<section class="booking-section" id="book">
+  <div>
+    <div class="section-kicker">Reservations</div>
+    <h2 class="display-h2">Reserve<br>Your <em>Table</em></h2>
+    <p class="body-text">We recommend reserving in advance, especially on weekends. Walk-ins welcome at the bar. Private dining available for parties of 8 or more — call us to arrange.</p>
+    <p class="body-text" style="font-size:0.85rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:6px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(205) 555-0300<br>reservations@thecoppertable.com</p>
+  </div>
+  <div class="booking-card" id="bookingCardWrap">
+    <h3>Book a Table</h3>
+    <div class="book-form-group">
+      <label class="book-label">Your Name</label>
+      <input type="text" class="book-input" id="bookName" placeholder="Jane Smith">
+    </div>
+    <div class="book-row book-form-group">
+      <div>
+        <label class="book-label">Date</label>
+        <input type="date" class="book-input">
+      </div>
+      <div>
+        <label class="book-label">Time</label>
+        <select class="book-select" id="bookTime">
+          <option>5:00 PM</option>
+          <option>5:30 PM</option>
+          <option>6:00 PM</option>
+          <option>6:30 PM</option>
+          <option>7:00 PM</option>
+          <option>7:30 PM</option>
+          <option>8:00 PM</option>
+          <option>8:30 PM</option>
+        </select>
+      </div>
+    </div>
+    <div class="book-row book-form-group">
+      <div>
+        <label class="book-label">Party Size</label>
+        <select class="book-select" id="bookParty">
+          <option>1 Guest</option>
+          <option>2 Guests</option>
+          <option>3 Guests</option>
+          <option>4 Guests</option>
+          <option>5–6 Guests</option>
+          <option>7+ (call us)</option>
+        </select>
+      </div>
+      <div>
+        <label class="book-label">Occasion</label>
+        <select class="book-select">
+          <option>Regular Dinner</option>
+          <option>Birthday</option>
+          <option>Anniversary</option>
+          <option>Date Night</option>
+          <option>Business</option>
+        </select>
+      </div>
+    </div>
+    <div class="book-form-group">
+      <label class="book-label">Phone Number</label>
+      <input type="tel" class="book-input" placeholder="(205) 555-0000">
+    </div>
+    <button class="btn-book" onclick="submitReservation()">Confirm Reservation</button>
+  </div>
+  <div class="booking-card" id="bookingConfirm" style="display:none;text-align:center;">
+    <h3>Table Requested</h3>
+    <p id="bookingConfirmText" style="color:var(--muted);font-size:0.9rem;margin-top:0.6rem;"></p>
+    <p style="color:var(--muted);font-size:0.75rem;margin-top:1rem;text-transform:uppercase;letter-spacing:0.05em;">Demo only — no reservation was actually booked</p>
+  </div>
+  <script>
+    function submitReservation(){
+      const name = document.getElementById('bookName').value.trim() || 'there';
+      const time = document.getElementById('bookTime').value;
+      const party = document.getElementById('bookParty').value;
+      document.getElementById('bookingCardWrap').style.display = 'none';
+      document.getElementById('bookingConfirmText').textContent = `Thanks, ${name}. In a real deployment we'd confirm your table for ${party} at ${time} by text or email.`;
+      document.getElementById('bookingConfirm').style.display = 'block';
+    }
+  </script>
+</section>
+
+<section class="seo-section" id="seo">
+  <div>
+    <div class="section-kicker">Search Visibility</div>
+    <h2 class="display-h2">We Show Up<br>When People <em>Search</em></h2>
+    <p class="body-text">Our advanced SEO setup means when someone searches "restaurant in Oneonta" or "best dining Blount County" — we're at the top of the results. Your website works around the clock to bring in new guests.</p>
+    <ul style="list-style:none; margin-top:1rem;">
+      <li style="display:flex;gap:0.75rem;margin-bottom:0.8rem;font-size:0.9rem;color:var(--muted);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:6px;"><polyline points="20 6 9 17 4 12"/></svg><span>Optimized page titles and meta descriptions</span></li>
+      <li style="display:flex;gap:0.75rem;margin-bottom:0.8rem;font-size:0.9rem;color:var(--muted);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:6px;"><polyline points="20 6 9 17 4 12"/></svg><span>Google Business Profile setup and verified</span></li>
+      <li style="display:flex;gap:0.75rem;margin-bottom:0.8rem;font-size:0.9rem;color:var(--muted);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:6px;"><polyline points="20 6 9 17 4 12"/></svg><span>Local SEO structured data for restaurants</span></li>
+      <li style="display:flex;gap:0.75rem;margin-bottom:0.8rem;font-size:0.9rem;color:var(--muted);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:6px;"><polyline points="20 6 9 17 4 12"/></svg><span>Mobile-optimized and fast-loading</span></li>
+      <li style="display:flex;gap:0.75rem;font-size:0.9rem;color:var(--muted);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:6px;"><polyline points="20 6 9 17 4 12"/></svg><span>Monthly SEO report included with Growth Care plan</span></li>
+    </ul>
+  </div>
+  <div class="seo-visual">
+    <div class="seo-bar">
+      <div class="seo-dots">
+        <span style="background:#FF5F57"></span><span style="background:#FEBC2E"></span><span style="background:#28C840"></span>
+      </div>
+      <span>google.com · restaurant in Oneonta AL</span>
+    </div>
+    <div style="padding:1rem 1.5rem 0; font-size:0.75rem; color:#5F6368; font-weight:500;">About 1,240 results (0.42 seconds)</div>
+    <div class="seo-result">
+      <div class="seo-url">thecoppertable.com › home</div>
+      <div class="seo-title">The Copper Table | Farm-to-Table Dining in Oneonta, AL <span class="seo-rank-badge">#1</span></div>
+      <div style="margin:0.3rem 0; font-size:0.8rem;">
+        <span class="seo-rating">★★★★★</span>
+        <span style="color:#4D5156;">4.9 · 312 Google reviews · $$$</span>
+      </div>
+      <div class="seo-snippet">Seasonal farm-to-table dining in the heart of Blount County. Chef Maria Calloway crafts menus from 18 local farm partners. Reserve online or call (205) 555-0300.</div>
+    </div>
+    <div class="seo-result" style="opacity:0.55;">
+      <div class="seo-url">yelp.com · oneonta-restaurants</div>
+      <div class="seo-title">Best Restaurants in Oneonta, Alabama - Yelp</div>
+      <div class="seo-snippet">Discover the best restaurants in Oneonta... Top picks include The Copper Table, rated #1 in the area by Yelp users.</div>
+    </div>
+    <div style="padding:1rem 1.5rem 1.5rem; font-size:0.8rem; color:#5F6368;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;margin-right:6px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Related: <a href="https://www.google.com/search?q=restaurants+near+Oneonta+AL" target="_blank" rel="noopener" style="color:#1A0DAB; text-decoration:none;">Restaurants near me</a> · <a href="https://www.google.com/search?q=farm+to+table+restaurants+Alabama" target="_blank" rel="noopener" style="color:#1A0DAB; text-decoration:none;">Farm-to-table Alabama</a>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-kicker" style="color:var(--copper-lt)">What Guests Say</div>
+  <h2 class="display-h2" style="color:var(--white)">Stories from<br>Our <em>Tables</em></h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-quote">"</div>
+      <p class="test-text">The short rib alone was worth the drive from Birmingham. This is the kind of place that makes you proud Alabama has a food scene worth talking about.</p>
+      <div class="test-author">
+        <div class="test-avatar">RM</div>
+        <div>
+          <div class="test-name">Rachel M.</div>
+          <div class="test-stars">★★★★★ Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-quote">"</div>
+      <p class="test-text">We celebrated our anniversary here and they went above and beyond — fresh flowers on the table, a handwritten note from the chef. We'll be back every year.</p>
+      <div class="test-author">
+        <div class="test-avatar">TS</div>
+        <div>
+          <div class="test-name">Tom & Sarah K.</div>
+          <div class="test-stars">★★★★★ Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-quote">"</div>
+      <p class="test-text">Honestly the best meal I've had in Alabama. The catfish and the hush puppies were perfect. The cocktails were creative and strong. Will 100% be back.</p>
+      <div class="test-author">
+        <div class="test-avatar">JP</div>
+        <div>
+          <div class="test-name">James P.</div>
+          <div class="test-stars">★★★★★ Google Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">The <em>Copper</em> Table</div>
+      <p class="footer-tagline">Farm-to-table dining in the heart of Blount County. Rooted in Alabama, inspired by what's growing right now.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="f-social-btn" aria-label="Instagram">IG</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener" class="f-social-btn" aria-label="Facebook">FB</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" class="f-social-btn" aria-label="X">X</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Dining</h4>
+      <a href="#menu">Menu</a>
+      <a href="#book">Reservations</a>
+      <a href="#book">Private Dining</a>
+      <a href="#menu">Brunch</a>
+      <a href="#book">Gift Cards</a>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#about">Our Story</a>
+      <a href="#about">The Chef</a>
+      <a href="#about">Farm Partners</a>
+      <a href="#about">Press</a>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <a href="https://www.google.com/maps/search/?api=1&query=240+Main+St,+Oneonta,+AL" target="_blank" rel="noopener">240 Main St, Oneonta, AL</a>
+      <a href="tel:2055550300">(205) 555-0300</a>
+      <a href="mailto:reservations@thecoppertable.com">reservations@thecoppertable.com</a>
+      <span style="display:block;color:var(--muted);font-size:0.9rem;margin-top:4px;">Tue–Sun · 5–10pm</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 The Copper Table · Oneonta, Alabama · All Rights Reserved
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+</script>
+
+</body>
+</html>
